@@ -14,5 +14,5 @@ The following table shows input values (you send them with the API call) and ret
 ## Example
 
 ```lsl
-llMessageLinked(LINK_SET, LIST_OUTFITS "", "");
+llMessageLinked(LINK_SET, LIST_OUTFITS, "", "");
 ```
