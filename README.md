@@ -17,6 +17,7 @@ communicates with your bots using the `LifeBots API` and an HTTP server listenin
 - [Control Panel Events](#control-panel-events)
   - [Full Control Panel Events Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Events.md)
 - [Your Script Functions](#your-script-functions)
+- [Examples](https://github.com/missyrestless/LifeBotsControlPanel/tree/main/Examples)
 
 ## What is LifeBots
 
@@ -91,6 +92,9 @@ The two-way communication is performed by using commands and events.
 
 Add your command and control script to the `LifeBots Control Panel`. Your command and
 control script sends commands to your LifeBots bot and receives events back from the bot.
+
+See the [LifeBots Control Panel Examples](https://github.com/missyrestless/LifeBotsControlPanel/tree/main/Examples)
+for several example scripts demonstrating features available to your command and control scripts.
 
 ## Control Panel Setup
 
