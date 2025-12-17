@@ -6,6 +6,20 @@ The `LifeBots Control Panel` is a scripted in-world object that acts as a bridge
 between your `LifeBots` management scripts and your `LifeBots` bots. The control panel
 communicates with your bots using the `LifeBots API` and an HTTP server listening to events.
 
+## Table of Contents
+
+- [What is LifeBots](#what-is-lifebots)
+- [Control Panel Features](#control-panel-features)
+- [Using LifeBots Control Panel](#using-lifebots-control-panel)
+- [Control Panel Setup](#control-panel-setup)
+- [Control Panel Commands](#control-panel-commands)
+  - [Full Control Panel Commands Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md)
+- [Control Panel Events](#control-panel-events)
+  - [Full Control Panel Events Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Events.md)
+- [Your Script Functions](#your-script-functions)
+
+## What is LifeBots
+
 [LifeBots](https://lifebots.cloud) bills itself as:
 
 > The most advanced bot platform for Second Life. From AI characters to
@@ -44,17 +58,6 @@ the `LifeBots Control Panel` provides an easy to use in-world interface to the
 as such, is free to download, deploy, modify, and redistribute. All modifications
 and derivative works must comply with the license and make their modifications
 freely available under the terms of the GNU Public License version 3.
-
-## Table of Contents
-
-- [Control Panel Features](#control-panel-features)
-- [Using LifeBots Control Panel](#using-lifebots-control-panel)
-- [Control Panel Setup](#control-panel-setup)
-- [Control Panel Commands](#control-panel-commands)
-  - [Full Control Panel Commands Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md)
-- [Control Panel Events](#control-panel-events)
-  - [Full Control Panel Events Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Events.md)
-- [Your Script Functions](#your-script-functions)
 
 ## Control Panel Features
 
