@@ -68,7 +68,7 @@ freely available under the terms of the GNU Public License version 3.
 - List, Manage, & Send Inventory
 - Sim Management
 - Trigger Bot actions on Events (e.g. Sit on object when Bot receives payment)
-- Much more, see Commands Reference for a full listing
+- Much more, see the [Commands Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md) for a full listing
 
 All you need is to call `llMessageLinked` LSL function. For example, to send a group
 invite when the Control Panel is touched:
