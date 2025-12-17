@@ -57,7 +57,7 @@ the `LifeBots Control Panel` provides an easy to use in-world interface to the
 `LifeBots Control Panel` is licensed under the GPL version 3 open source licens and,
 as such, is free to download, deploy, modify, and redistribute. All modifications
 and derivative works must comply with the license and make their modifications
-freely available under the terms of the GNU Public License version 3.
+freely available under the terms of the GNU General Public License version 3.
 
 ## Control Panel Features
 

@@ -11,6 +11,7 @@
 
 ////////////////////////////////////////////////////
 // Copyright (c) 2025-2026 Truth & Beauty Lab     //
+// License: GNU General Public License version 3  //
 // All rights reserved.                           //
 //                                                //
 // Author: Missy Restless missyrestless@gmail.com //
