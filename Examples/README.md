@@ -17,9 +17,15 @@ below in the [LifeBots Command and Control Codes](#lifebots-command-and-control-
 
 - [Avatar Picks](#avatar-picks)
 - [Scan for Avatars](#scan-for-avatars)
+- [Inventory Giver](#inventory-giver)
+- [Group Inviter](#group-inviter)
 - [LifeBots Command and Control Codes](#lifebots-command-and-control-codes)
 
 ## Avatar Picks
+
+The `Avatar Picks` example displays the Profile Picks of the avatar that touches the
+`LifeBots Control Panel` in-world object. In addition, this example illustrates how
+to parse the JSON body returned by the API request.
 
 <details><summary>Click here to view the
 
@@ -84,6 +90,9 @@ default {
 </details>
 
 ## Scan for Avatars
+
+The `Scan for Avatars` example is a simple script that returns details of
+the Avatars in the region when touched.
 
 <details><summary>Click here to view the
 
@@ -171,6 +180,143 @@ default {
 
 </details>
 
+## Inventory Giver
+
+This script asks the bot to give out an inventory object
+to whoever touches the prim the script is in.
+
+<details><summary>Click here to view the
+
+**Inventory Giver example code**
+
+</summary>
+
+```lsl
+// This script asks the bot to give out an inventory object
+// to whoever touches the prim the script is in
+//
+// Sets up the device and the bot in state_entry
+// Sends out inventory object on touch
+// Note that the inventory object is the UUID of an asset in the Bots inventory.
+//
+///////// LIFEBOTS COMMAND & CONTROL ////////////////
+integer BOT_SETUP_SETBOT            = 280101;      //
+integer BOT_SETUP_DEVICENAME        = 280103;      //
+integer BOT_GIVE_INVENTORY          = 280150;      //
+integer BOT_SETUP_SUCCESS              = 280201;   //
+integer BOT_SETUP_FAILED               = 280202;   //
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+// Simple Inventory giver example
+/////////////////////////////////////////////////////
+string deviceName = "Inventory Giver";
+string botName = "Bot Name";
+string botCode = "Bot Access Code";
+string inventoryID = "UUID goes here";
+
+default {
+    state_entry() {
+        // Setup Device
+        llMessageLinked(LINK_SET, BOT_SETUP_DEVICENAME, deviceName, llGetOwner());
+    }
+    
+    touch_start(integer num) {
+        // Setup Bot
+        llMessageLinked(LINK_SET, BOT_SETUP_SETBOT, botName, botCode);
+    }
+
+    link_message( integer sender_num, integer num, string str, key id ) {
+        /////////////////// Bot setup success event
+        if(num==BOT_SETUP_SUCCESS) {
+            // We added our bot fine
+            llOwnerSay("Successfully setup bot: " + str);
+            
+            // Send inventory item to whoever touched the prim
+            llMessageLinked(LINK_SET, BOT_GIVE_INVENTORY, inventoryID, llDetectedKey(0));
+        } else if(num==BOT_SETUP_FAILED) {
+            // We split the string parameter to the lines
+            list parts=llParseString2List(str,["\n"],[]);
+
+            // The first line is a status code, and second line is the bot expiration date
+            string code=llList2String(parts,0);
+            string expires=llList2String(parts,1);
+            
+            // Setup failed somehow
+            llOwnerSay("Bot setup failed:\n"+
+              "error code: "+code+"\n"+
+              "expired: "+expires);
+        }
+    }
+    
+}
+```
+
+</details>
+
+## Group Inviter
+
+Simple script that invites whoever touches the object to the specified group.
+
+<details><summary>Click here to view the
+
+**Group Inviter example code**
+
+</summary>
+
+```lsl
+// Simple script that invites whoever touches the object to the specified group
+//
+// Sets up the device and the bot in state_entry
+// Sends out group invite on touch
+//
+///////// LIFEBOTS COMMAND & CONTROL ////////////////
+//                                                 //
+// Setup and startup                               //
+integer BOT_SETUP_SETBOT            = 280101;      //
+// Device Settings                                 //
+integer BOT_SETUP_DEVICENAME        = 280103;      //
+// Group Management                                //
+integer BOT_GROUP_INVITE            = 280156;      //
+// EVENTS                                          //
+integer BOT_SETUP_SUCCESS           = 280201;      //
+/////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////
+// Land Inviter
+////////////////////////////////////////////////////
+string deviceName = "Inviter";
+string botName = "Bot Name";
+string botCode = "Bot Access Code";
+string groupID = "UUID of group you want the bot to invite to";
+string roleID = "UUID of role you want the bot to invite to"; //NULL_KEY for everyone
+    
+default {
+    state_entry() {
+        // Setup Device
+        llMessageLinked(LINK_SET, BOT_SETUP_DEVICENAME, deviceName, llGetOwner());
+        
+        // Setup Bot
+        llMessageLinked(LINK_SET, BOT_SETUP_SETBOT, botName, botCode);
+    }
+    
+    // Send out group invite on touch
+    touch_start(integer num) {
+        llMessageLinked(LINK_SET, BOT_GROUP_INVITE, groupID + "\n" + roleID, llDetectedKey(0));
+    }
+    
+    // Notify owner if device was successfully initialized
+    link_message( integer sender_num, integer num, string str, key id ) {
+        /////////////////// Bot setup success event
+        if(num==BOT_SETUP_SUCCESS) {
+            // Inform user
+            llOwnerSay(deviceName + " ready!");
+        }
+    }
+}
+```
+
+</details>
+
 ## LifeBots Command and Control Codes
 
 The `LifeBots Control Panel` defines command and control codes
@@ -182,7 +328,7 @@ You can add only those used by your script or all of them.
 
 <details><summary>Click here to view the
 
-**lifeBots command and control codes**
+**LifeBots command and control codes**
 
 </summary>
 
