@@ -51,9 +51,9 @@ freely available under the terms of the GNU Public License version 3.
 - [Using LifeBots Control Panel](#using-lifebots-control-panel)
 - [Control Panel Setup](#control-panel-setup)
 - [Control Panel Commands](#control-panel-commands)
-  - [Full Control Panel Commands Reference](https://github.com/missyrestless/Bots/blob/main/LifeBots/ControlPanel/Control_Panel_Commands.md)
+  - [Full Control Panel Commands Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md)
 - [Control Panel Events](#control-panel-events)
-  - [Full Control Panel Events Reference](https://github.com/missyrestless/Bots/blob/main/LifeBots/ControlPanel/Control_Panel_Events.md)
+  - [Full Control Panel Events Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Events.md)
 - [Your Script Functions](#your-script-functions)
 
 ## Control Panel Features
@@ -135,7 +135,7 @@ The `LifeBots Control Panel` sends commands from your script => your bot.
 These are the commands you send to the bot (initialization, group invitation etc).
 
 See the full list of supported `LifeBots Control Panel` commands at
-https://github.com/missyrestless/Bots/blob/main/LifeBots/ControlPanel/Control_Panel_Commands.md
+https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md
 
 ### How to Send Commands
 
@@ -156,7 +156,7 @@ The `LifeBots Control Panel` sends events from your bot => your script.
 Events are notifications being sent from the bot to your script (error messages, group chat IMs etc).
 
 View the full list of supported `LifeBots Control Panel` events at
-https://github.com/missyrestless/Bots/blob/main/LifeBots/ControlPanel/Control_Panel_Events.md
+https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Events.md
 
 ### How to Receive Events
 
