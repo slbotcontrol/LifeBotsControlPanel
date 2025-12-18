@@ -394,6 +394,7 @@ default {
                 llSay(DEBUG_CHANNEL, "In http_response request_id = " + (string)request_id);
             }
             llOwnerSay("✓ Success!");
+            // llOwnerSay("Response:\n" + llJsonGetValue(body, []));
             llOwnerSay("Response: " + body);
             // In case the user wishes to parse the JSON body
             llMessageLinked(LINK, BOT_JSON_RESPONSE, body, NULL_KEY);

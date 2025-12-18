@@ -12,9 +12,9 @@ integer BOT_JSON_RESPONSE           = 300000;   //
 //////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////
-// Get Avatar Profile Picks
+// List bot's outfits
 ////////////////////////////////////////////////////
-string deviceName = "Avatar Picks";
+string deviceName = "Bot Outfits";
 string botName = "Bot Name";
 string botCode = "Bot Access Code";
 key touchUUID = NULL_KEY;
@@ -28,7 +28,7 @@ default {
         llMessageLinked(LINK_SET, BOT_SETUP_SETBOT, botName, botCode);
     }
     
-    // Get avatar profile picks on touch
+    // List bot's outfits on touch
     touch_start(integer num) {
         touchUUID = llDetectedKey(0);
         llMessageLinked(LINK_SET, LIST_OUTFITS, "", "");
@@ -44,7 +44,7 @@ default {
             // Inform user of failed setup
             llOwnerSay("ERROR: LifeBots Control Panel setup failed for " + deviceName);
         } else if (num == BOT_JSON_RESPONSE) {
-            llSay(0, botName + " outfits:\n" + llJsonGetValue(str, ["outfits"]));
+            llOwnerSay(botName + " outfits");
         }
     }
 }
