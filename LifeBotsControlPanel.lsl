@@ -171,7 +171,7 @@ integer SIM_RETURN_SCRIPTED_OBJECTS = 299030;   //
 integer SIM_RETURN_OTHERS_OBJECTS   = 299031;   //
 integer REGION_INFO                 = 299032;   //
 // JSON body of response to parse
-integer BOT_JSON_RESPONSE           = 300000;   //
+integer BOT_RESPONSE                = 300000;   //
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 // LifeBots Control Panel Command & Control Bridge
@@ -200,25 +200,41 @@ key Owner = NULL_KEY;
 // You can specify the exact link number of the prim to optimize performance
 integer LINK = LINK_SET;
 
+// Returned data type can be JSON or URLENCODE, default is JSON
+string DATATYPE = "JSON";
+
+// Whether to reset on change of object ownership, default is reset
+integer OWNERCHANGE_RESET = 1;
+
 // 0 = debug off, 1 = debug on
 integer LB_DEBUG = 0;
 
 // Send LifeBots HTTP API commands
 LifeBotsAPI(string command, list params) {
 
+    list query;
     if (LB_DEBUG == 1) {
         llSay(DEBUG_CHANNEL, "API_KEY = " + API_KEY);
         llSay(DEBUG_CHANNEL, "BOT_NAME = " + BOT_NAME);
         llSay(DEBUG_CHANNEL, "BOT_SECRET = " + BOT_SECRET);
     }
     // Populate the query data
-    list query = [
-        "action="  + command,
-        "apikey="  + llEscapeURL(API_KEY),
-        "botname=" + llEscapeURL(BOT_NAME),
-        "secret="  + llEscapeURL(BOT_SECRET),
-        "dataType=json"
-    ];
+    if (DATATYPE = "URLENCODE") {
+        query = [
+            "action="  + command,
+            "apikey="  + llEscapeURL(API_KEY),
+            "botname=" + llEscapeURL(BOT_NAME),
+            "secret="  + llEscapeURL(BOT_SECRET)
+        ];
+    } else {
+        query = [
+            "action="  + command,
+            "apikey="  + llEscapeURL(API_KEY),
+            "botname=" + llEscapeURL(BOT_NAME),
+            "secret="  + llEscapeURL(BOT_SECRET),
+            "dataType=json"
+        ];
+    }
     if (LB_DEBUG == 1) {
         llSay(DEBUG_CHANNEL, "API_KEY = " + API_KEY);
         llSay(DEBUG_CHANNEL, "BOT_NAME = " + BOT_NAME);
@@ -269,45 +285,49 @@ throw_exception(string inputString)
 {
     key owner = llGetOwner();
     llInstantMessage(owner, inputString);
- 
-    // yeah, bad way to handle exceptions by restarting.
-    // However this is just a demo script...
- 
-    llResetScript();
 }
 
 default {
  
     state_entry()
     {
-        Owner = llGetOwner();
-        if (llGetInventoryType(CONFIG_CARD) == INVENTORY_NOTECARD) {
-            NotecardLine = 0;
-            QueryID = llGetNotecardLine(CONFIG_CARD, NotecardLine);
-        }
-        else {
-            llOwnerSay("Configuration notecard missing, using defaults.");
-        }
-        request_secure_url();
+         Owner = llGetOwner();
+         if (llGetInventoryType(CONFIG_CARD) == INVENTORY_NOTECARD) {
+             NotecardLine = 0;
+             QueryID = llGetNotecardLine(CONFIG_CARD, NotecardLine);
+         }
+         else {
+             llOwnerSay("Configuration notecard missing, using defaults.");
+         }
+         request_secure_url();
     }
 
     on_rez(integer param)
     {
-        llResetScript();
+         llResetScript();
     }
 
     changed(integer change)
     {
-        if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
-        {
-            llReleaseURL(WEBHOOK_URL);
-            WEBHOOK_URL = "";
+         if (OWNERCHANGE_RESET == 1) {
+             if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
+             {
+                 llReleaseURL(WEBHOOK_URL);
+                 WEBHOOK_URL = "";
  
-            llResetScript();
-        }
+                 llResetScript();
+             }
+         } else {
+             if (change & CHANGED_INVENTORY)
+             {
+                 llReleaseURL(WEBHOOK_URL);
+                 WEBHOOK_URL = "";
  
-        if (change & (CHANGED_REGION | CHANGED_REGION_START | CHANGED_TELEPORT))
-            request_secure_url();
+                 llResetScript();
+             }
+         }
+         if (change & (CHANGED_REGION | CHANGED_REGION_START | CHANGED_TELEPORT))
+             request_secure_url();
     }
  
 
@@ -349,6 +369,14 @@ default {
                         BOT_NAME = value;
                     } else if ( name == "LOGIN_SITON" ) {
                         LOGIN_SITON = value;
+                    } else if ( name == "DATATYPE" ) {
+                        if ((value == "URLENCODE") || (value == "JSON")) {
+                            DATATYPE = value;
+                        } else {
+                            llOwnerSay("WARNING: unsupported DATATYPE " + value + " specified in Configuration");
+                        }
+                    } else if ( name == "OWNERCHANGE_RESET" ) {
+                        OWNERCHANGE_RESET = (integer)value;
                     } else if ( name == "DEBUG" ) {
                         LB_DEBUG = (integer)value;
                     }
@@ -397,16 +425,25 @@ default {
             // llOwnerSay("Response:\n" + llJsonGetValue(body, []));
             llOwnerSay("Response: " + body);
             // In case the user wishes to parse the JSON body
-            llMessageLinked(LINK, BOT_JSON_RESPONSE, body, NULL_KEY);
+            llMessageLinked(LINK, BOT_RESPONSE, body, NULL_KEY);
             
-            // Parse JSON response for success or failure
-            if (llJsonGetValue( body, ["result"]) == "OK")
-            {
-                llOwnerSay("✓ Command executed successfully");
-            }
-            else if (llJsonGetValue( body, ["result"]) == "FAIL")
-            {
-                llOwnerSay("✗ Command failed - check response");
+            // Parse response for success or failure
+            if (DATATYPE = "URLENCODE") {
+                if (llSubStringIndex(body, "result=OK") != -1) {
+                    llOwnerSay("✓ Command executed successfully");
+                } else if (llSubStringIndex(body, "result=FAIL") != -1) {
+                    llOwnerSay("✗ Command failed - check response");
+                } else {
+                    llOwnerSay("✗ Unable to parse result - check response");
+                }
+            } else {
+                if (llJsonGetValue( body, ["result"]) == "OK") {
+                    llOwnerSay("✓ Command executed successfully");
+                } else if (llJsonGetValue( body, ["result"]) == "FAIL") {
+                    llOwnerSay("✗ Command failed - check response");
+                } else {
+                    llOwnerSay("✗ Unable to parse result - check response");
+                }
             }
         } else {
             llOwnerSay("✗ HTTP Error: " + (string)status);
@@ -457,7 +494,6 @@ default {
             llOwnerSay("Sending bot location request...");
             LifeBotsAPI("bot_location", [ ]);
         // Device Settings
-        // TODO: BOT_SETUP_SETOPTIONS
         } else if (num == BOT_SETUP_DEBUG) {
             if (message == "1") {
                 LB_DEBUG = 1;
@@ -466,6 +502,16 @@ default {
             }
         } else if (num == BOT_SETUP_DEVICENAME) {
             DEVICE_NAME = message;
+        } else if (num == BOT_SETUP_SETOPTIONS) {
+            if (message == "DATATYPE_JSON") {
+                DATATYPE = "JSON";
+            } else if (message == "DATATYPE_URLENCODE") {
+                DATATYPE = "URLENCODE";
+            } else if (message == "NO_OWNERCHANGE_RESET") {
+                OWNERCHANGE_RESET = 0;
+            } else if (message == "OWNERCHANGE_RESET") {
+                OWNERCHANGE_RESET = 1;
+            }
         // Communication commands
         // TODO:
         //   BOT_LISTEN_LOCAL_CHAT
@@ -1025,7 +1071,7 @@ default {
         } else {
             // TODO: which others did we not catch in this link_message event
             if (num > 250000) {
-              if ((num != BOT_SETUP_SUCCESS) && (num != BOT_SETUP_FAILED) && (num != BOT_JSON_RESPONSE)) {
+              if ((num != BOT_SETUP_SUCCESS) && (num != BOT_SETUP_FAILED) && (num != BOT_RESPONSE)) {
                 llOwnerSay("Unsupported API request: num=" + (string)num + ", message=" + message);
               }
             }

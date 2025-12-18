@@ -3,7 +3,7 @@
 Sets various options for LifeBots Control Panel.
 
 ```lsl
-llMessageLinked(LINK_SET, BOT_SETUP_SETOPTIONS, "NO_OWNERCHANGE_RESET", NULL_KEY);
+llMessageLinked(LINK_SET, BOT_SETUP_SETOPTIONS, "<options-list>", NULL_KEY);
 ```
 
 ## Variables
@@ -19,7 +19,10 @@ The following table shows input values (you send them with the API call) and ret
 
 The following options are currently available:
 
-- NO_OWNERCHANGE_RESET - LifeBots Control Panel does not reset itself on object owner change
+- `DATATYPE_JSON` - LifeBots Control Panel API calls return JSON format data (the default)
+- `DATATYPE_URLENCODE` - LifeBots Control Panel API calls return URL encoded format data
+- `NO_OWNERCHANGE_RESET` - LifeBots Control Panel does not reset itself on object owner change
+- `OWNERCHANGE_RESET` - LifeBots Control Panel resets itself on object owner change (the default)
 
 ## Example
 

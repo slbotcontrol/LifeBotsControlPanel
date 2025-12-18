@@ -31,7 +31,7 @@ END_SETTINGS
 # LifeBots bot secret, OPTIONAL
 #     This will be the default LifeBots bot secret if set
 #     If set in the user's command script that value will override this
-#LB_SECRET = your-bot-secret  # Also referred to in the doc as an access code
+#LB_SECRET = your-bot-secret
 # Full Bot Name (used for API requests, must match your LifeBots config), OPTIONAL
 #     This will be the default LifeBots bot name if set
 #     If set in the user's command script that value will override this
@@ -39,8 +39,16 @@ END_SETTINGS
 # UUID to sit on when logging in, OPTIONAL
 #LOGIN_SITON = uuid-of-siton-object
 #
+# Set DATATYPE = URLENCODE to specify URL encoded API call return format
+# The default return format is JSON
+#DATATYPE = JSON
+#
+# Set NO_OWNERCHANGE_RESET = TRUE to indicate that LifeBots Control Panel
+# does not reset itself on object owner change (default is reset on owner change)
+#NO_OWNERCHANGE_RESET = FALSE
+#
 # Set DEBUG=TRUE to enable debug output
-#DEBUG = TRUE
+#DEBUG = FALSE
 
 # If you have more than one bot you can set each bot's secret like this
 #LB_SECRET_BOT1_NAME = your-first-bot-secret

@@ -6,7 +6,7 @@ integer BOT_SETUP_SETBOT            = 280101;   //
 integer SCAN_AVATARS                = 299021;   //
 integer BOT_SETUP_SUCCESS           = 280201;   //
 integer BOT_SETUP_FAILED            = 280202;   //
-integer BOT_JSON_RESPONSE           = 300000;   //
+integer BOT_RESPONSE                = 300000;   //
 //////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////
@@ -40,7 +40,7 @@ default {
         } else if (num == BOT_SETUP_FAILED) {
             // Inform user of failed setup
             llOwnerSay("ERROR: LifeBots Control Panel setup failed for " + deviceName);
-        } else if (num == BOT_JSON_RESPONSE) {
+        } else if (num == BOT_RESPONSE) {
             llSay(0, "Avatars in region:");
             string avis = llJsonGetValue(str, ["avatars"]);  
             string avuuid;

@@ -44,7 +44,7 @@ integer BOT_SETUP_SETBOT            = 280101;   //
 integer AVATAR_PICKS                = 299024;   //
 integer BOT_SETUP_SUCCESS           = 280201;   //
 integer BOT_SETUP_FAILED            = 280202;   //
-integer BOT_JSON_RESPONSE           = 300000;   //
+integer BOT_RESPONSE                = 300000;   //
 //////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ default {
         } else if (num == BOT_SETUP_FAILED) {
             // Inform user of failed setup
             llOwnerSay("ERROR: LifeBots Control Panel setup failed for " + deviceName);
-        } else if (num == BOT_JSON_RESPONSE) {
+        } else if (num == BOT_RESPONSE) {
             string displayName = llGetDisplayName(touchUUID);
             llSay(0, displayName + " profile picks:\n" + llJsonGetValue(str, ["picks"]));
         }
@@ -109,7 +109,7 @@ integer BOT_SETUP_SETBOT            = 280101;   //
 integer SCAN_AVATARS                = 299021;   //
 integer BOT_SETUP_SUCCESS           = 280201;   //
 integer BOT_SETUP_FAILED            = 280202;   //
-integer BOT_JSON_RESPONSE           = 300000;   //
+integer BOT_RESPONSE                = 300000;   //
 //////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ default {
         } else if (num == BOT_SETUP_FAILED) {
             // Inform user of failed setup
             llOwnerSay("ERROR: LifeBots Control Panel setup failed for " + deviceName);
-        } else if (num == BOT_JSON_RESPONSE) {
+        } else if (num == BOT_RESPONSE) {
             llSay(0, "Avatars in region:");
             string avis = llJsonGetValue(str, ["avatars"]);  
             string avuuid;
@@ -484,7 +484,7 @@ integer SIM_RETURN_SCRIPTED_OBJECTS = 299030;   //
 integer SIM_RETURN_OTHERS_OBJECTS   = 299031;   //
 integer REGION_INFO                 = 299032;   //
 // JSON body of response to parse
-integer BOT_JSON_RESPONSE           = 300000;   //
+integer BOT_RESPONSE                = 300000;   //
 //////////////////////////////////////////////////
 ```
 

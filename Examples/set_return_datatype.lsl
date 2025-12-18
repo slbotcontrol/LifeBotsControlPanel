@@ -1,20 +1,19 @@
-// Example script that returns a list of the bots outfits
-//
-// This example illustrates how to parse the JSON body returned by the API request
+// Example script that illustrates how to specify the returned data type
+// The default return data type is JSON. This script sets it to URL encoded string.
 //
 //////// LIFEBOTS COMMAND & CONTROL CODES ////////
 integer BOT_SETUP_DEVICENAME        = 280103;   //
 integer BOT_SETUP_SETBOT            = 280101;   //
-integer LIST_OUTFITS                = 299006;   //
+integer AVATAR_PICKS                = 299024;   //
 integer BOT_SETUP_SUCCESS           = 280201;   //
 integer BOT_SETUP_FAILED            = 280202;   //
 integer BOT_RESPONSE                = 300000;   //
 //////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////
-// List bot's outfits
+// Get Avatar Profile Picks
 ////////////////////////////////////////////////////
-string deviceName = "Bot Outfits";
+string deviceName = "Avatar Picks";
 string botName = "Bot Name";
 string botCode = "Bot Access Code";
 key touchUUID = NULL_KEY;
@@ -28,10 +27,10 @@ default {
         llMessageLinked(LINK_SET, BOT_SETUP_SETBOT, botName, botCode);
     }
     
-    // List bot's outfits on touch
+    // Get avatar profile picks on touch
     touch_start(integer num) {
         touchUUID = llDetectedKey(0);
-        llMessageLinked(LINK_SET, LIST_OUTFITS, "", "");
+        llMessageLinked(LINK_SET, AVATAR_PICKS, "", touchUUID);
     }
     
     // Notify owner if device was successfully initialized
@@ -40,11 +39,14 @@ default {
         if (num == BOT_SETUP_SUCCESS) {
             // Inform user of successful setup
             llOwnerSay(deviceName + " ready!");
+            // If setup succeeds then set the return data type to URLENCODE
+            llMessageLinked(LINK_SET, BOT_SETUP_SETOPTIONS, "DATATYPE_URLENCODE", NULL_KEY);
         } else if (num == BOT_SETUP_FAILED) {
             // Inform user of failed setup
             llOwnerSay("ERROR: LifeBots Control Panel setup failed for " + deviceName);
         } else if (num == BOT_RESPONSE) {
-            llOwnerSay(botName + " outfits");
+            string displayName = llGetDisplayName(touchUUID);
+            llSay(0, displayName + " profile picks:\n" + llUnescapeURL(str));
         }
     }
 }
