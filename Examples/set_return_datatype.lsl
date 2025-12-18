@@ -7,13 +7,14 @@ integer BOT_SETUP_SETBOT            = 280101;   //
 integer AVATAR_PICKS                = 299024;   //
 integer BOT_SETUP_SUCCESS           = 280201;   //
 integer BOT_SETUP_FAILED            = 280202;   //
+integer BOT_SETUP_SETOPTIONS        = 280104;   //
 integer BOT_RESPONSE                = 300000;   //
 //////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////
-// Get Avatar Profile Picks
+// Set API request return data type to URL Encoded
 ////////////////////////////////////////////////////
-string deviceName = "Avatar Picks";
+string deviceName = "Set Return Datatype";
 string botName = "Bot Name";
 string botCode = "Bot Access Code";
 key touchUUID = NULL_KEY;
@@ -45,6 +46,7 @@ default {
             // Inform user of failed setup
             llOwnerSay("ERROR: LifeBots Control Panel setup failed for " + deviceName);
         } else if (num == BOT_RESPONSE) {
+            // Process return here prior to output
             string displayName = llGetDisplayName(touchUUID);
             llSay(0, displayName + " profile picks:\n" + llUnescapeURL(str));
         }

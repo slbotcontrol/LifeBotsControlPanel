@@ -16,9 +16,11 @@ below in the [LifeBots Command and Control Codes](#lifebots-command-and-control-
 ## Table of Contents
 
 - [Avatar Picks](#avatar-picks)
+- [List Outfits](#list-outfits)
 - [Scan for Avatars](#scan-for-avatars)
 - [Inventory Giver](#inventory-giver)
 - [Group Inviter](#group-inviter)
+- [Set Return Data Type](#set-return-data-type)
 - [LifeBots Command and Control Codes](#lifebots-command-and-control-codes)
 
 ## Avatar Picks
@@ -89,10 +91,77 @@ default {
 
 </details>
 
+## List Outfits
+
+Example script that returns a list of the bot's outfits.
+This example has some preliminary parsing of the JSON body returned by the API request.
+
+<details><summary>Click here to view the
+
+**List Outfits command and control example code**
+
+</summary>
+
+```lsl
+// Example script that returns a list of the bots outfits
+//
+// This example illustrates how to parse the JSON body returned by the API request
+//
+//////// LIFEBOTS COMMAND & CONTROL CODES ////////
+integer BOT_SETUP_DEVICENAME        = 280103;   //
+integer BOT_SETUP_SETBOT            = 280101;   //
+integer LIST_OUTFITS                = 299006;   //
+integer BOT_SETUP_SUCCESS           = 280201;   //
+integer BOT_SETUP_FAILED            = 280202;   //
+integer BOT_RESPONSE                = 300000;   //
+//////////////////////////////////////////////////
+
+////////////////////////////////////////////////////
+// List bot's outfits
+////////////////////////////////////////////////////
+string deviceName = "Bot Outfits";
+string botName = "Bot Name";
+string botCode = "Bot Access Code";
+key touchUUID = NULL_KEY;
+    
+default {
+    state_entry() {
+        // Setup Device
+        llMessageLinked(LINK_SET, BOT_SETUP_DEVICENAME, deviceName, llGetOwner());
+        
+        // Setup Bot
+        llMessageLinked(LINK_SET, BOT_SETUP_SETBOT, botName, botCode);
+    }
+    
+    // List bot's outfits on touch
+    touch_start(integer num) {
+        touchUUID = llDetectedKey(0);
+        llMessageLinked(LINK_SET, LIST_OUTFITS, "", "");
+    }
+    
+    // Notify owner if device was successfully initialized
+    link_message( integer sender_num, integer num, string str, key id ) {
+        /////////////////// Bot setup success event
+        if (num == BOT_SETUP_SUCCESS) {
+            // Inform user of successful setup
+            llOwnerSay(deviceName + " ready!");
+        } else if (num == BOT_SETUP_FAILED) {
+            // Inform user of failed setup
+            llOwnerSay("ERROR: LifeBots Control Panel setup failed for " + deviceName);
+        } else if (num == BOT_RESPONSE) {
+            llOwnerSay(botName + " outfits");
+        }
+    }
+}
+```
+
+</details>
+
 ## Scan for Avatars
 
 The `Scan for Avatars` example is a simple script that returns details of
-the Avatars in the region when touched.
+the Avatars in the region when touched. This example illustrates additional
+parsing of the JSON body returned by the API request.
 
 <details><summary>Click here to view the
 
@@ -310,6 +379,76 @@ default {
         if(num==BOT_SETUP_SUCCESS) {
             // Inform user
             llOwnerSay(deviceName + " ready!");
+        }
+    }
+}
+```
+
+</details>
+
+## Set Return Data Type
+
+Example script that illustrates how to specify the returned data type.
+The default return data type is JSON. This script sets it to URL encoded string.
+
+<details><summary>Click here to view the
+
+**Set Return Data Type example code**
+
+</summary>
+
+```lsl
+// Example script that illustrates how to specify the returned data type
+// The default return data type is JSON. This script sets it to URL encoded string.
+//
+//////// LIFEBOTS COMMAND & CONTROL CODES ////////
+integer BOT_SETUP_DEVICENAME        = 280103;   //
+integer BOT_SETUP_SETBOT            = 280101;   //
+integer AVATAR_PICKS                = 299024;   //
+integer BOT_SETUP_SUCCESS           = 280201;   //
+integer BOT_SETUP_FAILED            = 280202;   //
+integer BOT_SETUP_SETOPTIONS        = 280104;   //
+integer BOT_RESPONSE                = 300000;   //
+//////////////////////////////////////////////////
+
+////////////////////////////////////////////////////
+// Set API request return data type to URL Encoded
+////////////////////////////////////////////////////
+string deviceName = "Set Return Datatype";
+string botName = "Bot Name";
+string botCode = "Bot Access Code";
+key touchUUID = NULL_KEY;
+    
+default {
+    state_entry() {
+        // Setup Device
+        llMessageLinked(LINK_SET, BOT_SETUP_DEVICENAME, deviceName, llGetOwner());
+        
+        // Setup Bot
+        llMessageLinked(LINK_SET, BOT_SETUP_SETBOT, botName, botCode);
+    }
+    
+    // Get avatar profile picks on touch
+    touch_start(integer num) {
+        touchUUID = llDetectedKey(0);
+        llMessageLinked(LINK_SET, AVATAR_PICKS, "", touchUUID);
+    }
+    
+    // Notify owner if device was successfully initialized
+    link_message( integer sender_num, integer num, string str, key id ) {
+        /////////////////// Bot setup success event
+        if (num == BOT_SETUP_SUCCESS) {
+            // Inform user of successful setup
+            llOwnerSay(deviceName + " ready!");
+            // If setup succeeds then set the return data type to URLENCODE
+            llMessageLinked(LINK_SET, BOT_SETUP_SETOPTIONS, "DATATYPE_URLENCODE", NULL_KEY);
+        } else if (num == BOT_SETUP_FAILED) {
+            // Inform user of failed setup
+            llOwnerSay("ERROR: LifeBots Control Panel setup failed for " + deviceName);
+        } else if (num == BOT_RESPONSE) {
+            // Process return here prior to output
+            string displayName = llGetDisplayName(touchUUID);
+            llSay(0, displayName + " profile picks:\n" + llUnescapeURL(str));
         }
     }
 }
