@@ -36,6 +36,7 @@ integer BOT_LOCATION                = 290232;   //
 integer BOT_SETUP_SETOPTIONS        = 280104;   //
 integer BOT_SETUP_DEVICENAME        = 280103;   //
 integer BOT_SETUP_DEBUG             = 280105;   //
+integer BOT_SETUP_DEBUG_SUCCESS     = 280107;   //
 integer BOT_SETUP_SETLINK           = 280102;   //
                                                 //
 // Communication commands                       //
@@ -170,8 +171,10 @@ integer SIM_RETURN_OBJECTS          = 299029;   //
 integer SIM_RETURN_SCRIPTED_OBJECTS = 299030;   //
 integer SIM_RETURN_OTHERS_OBJECTS   = 299031;   //
 integer REGION_INFO                 = 299032;   //
-// JSON body of response to parse
+// Body of response to parse
 integer BOT_RESPONSE                = 300000;   //
+// Success/Failure setup codes
+// TODO: return codes for success or failure    //
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 // LifeBots Control Panel Command & Control Bridge
@@ -395,6 +398,9 @@ default {
         else if (method == URL_REQUEST_GRANTED)
         {
             WEBHOOK_URL = body;
+            if (LB_DEBUG == 1) {
+                llSay(DEBUG_CHANNEL, "In http_request Webook URL = " + WEBHOOK_URL);
+            }
             // check every 5 mins for dropped URL
             llSetTimerEvent(300.0);
         }
@@ -409,6 +415,10 @@ default {
 
     http_response(key request_id, integer status, list metadata, string body)
     {
+        if (LB_DEBUG == 1) {
+          llSay(DEBUG_CHANNEL, "In http_response():");
+          llSay(DEBUG_CHANNEL, llList2CSV([request_id, status, metadata, body]));
+        }
         if (request_id == selfCheckRequestId)
         {
             selfCheckRequestId = NULL_KEY;
@@ -418,9 +428,6 @@ default {
         } else if (request_id == NULL_KEY) {
             throw_exception("Too many HTTP requests too fast!");
         } else if (status == 200) {
-            if (LB_DEBUG == 1) {
-                llSay(DEBUG_CHANNEL, "In http_response request_id = " + (string)request_id);
-            }
             llOwnerSay("✓ Success!");
             // llOwnerSay("Response:\n" + llJsonGetValue(body, []));
             llOwnerSay("Response: " + body);
@@ -454,10 +461,11 @@ default {
     link_message(integer sender, integer num, string message, key trigger)
     {
         if (LB_DEBUG == 1) {
+          llSay(DEBUG_CHANNEL, "In link_message():");
           llSay(DEBUG_CHANNEL, llList2CSV([sender, num, message, trigger]));
-          llSay(DEBUG_CHANNEL, "API Num = " + (string)num);
-          llSay(DEBUG_CHANNEL, "Message = " + message);
-          llSay(DEBUG_CHANNEL, "Trigger = " + (string)trigger);
+          //llSay(DEBUG_CHANNEL, "API Num = " + (string)num);
+          //llSay(DEBUG_CHANNEL, "Message = " + message);
+          //llSay(DEBUG_CHANNEL, "Trigger = " + (string)trigger);
         }
         // Setup and startup
         if (num == BOT_SETUP_SETBOT) {
@@ -471,6 +479,7 @@ default {
             BOT_SECRET = (string)trigger;
             // TODO: Check Bot status and send bot setup success/failure link message
             // Check_Bot_Status();
+            // LifeBotsAPI("status", [ ]);
             llMessageLinked(LINK, BOT_SETUP_SUCCESS, BOT_NAME, trigger);
             // llMessageLinked(LINK, BOT_SETUP_FAILED, BOT_NAME, trigger);
         } else if (num == BOT_SETUP_SETLINK) {
@@ -500,6 +509,7 @@ default {
             } else {
                 LB_DEBUG = 0;
             }
+            llMessageLinked(LINK, BOT_SETUP_DEBUG_SUCCESS, "", "");
         } else if (num == BOT_SETUP_DEVICENAME) {
             DEVICE_NAME = message;
         } else if (num == BOT_SETUP_SETOPTIONS) {
@@ -521,13 +531,14 @@ default {
         } else if (num == BOT_LISTEN_IM) {
             if (WEBHOOK_URL == "") {
                 request_secure_url();
+            } else {
+                llOwnerSay("Sending bot listen IM request...");
+                LifeBotsAPI("set_http_callback", [
+                  "url", WEBHOOK_URL,
+                  "events", "im",
+                  "operation", "add"
+                ]);
             }
-            llOwnerSay("Sending bot listen IM request...");
-            LifeBotsAPI("set_http_callback", [
-              "url", WEBHOOK_URL,
-              "events", "im",
-              "operation", "add"
-            ]);
         } else if (num == BOT_SAY_CHAT) {
             llOwnerSay("Sending bot say chat request...");
             LifeBotsAPI("say_chat_channel", [
