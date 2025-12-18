@@ -558,7 +558,7 @@ default {
                 llOwnerSay("Sending bot listen IM request...");
                 LifeBotsAPI("set_http_callback", [
                   "url", WEBHOOK_URL,
-                  "events", "im",
+                  "events", "instant_message",
                   "operation", "add"
                 ]);
             }
