@@ -18,6 +18,7 @@ integer BOT_INSTANT_MESSAGE         = 280122;      //
 integer BOT_LISTEN_IM               = 280126;      //
 integer BOT_SETUP_SUCCESS           = 280201;      //
 integer BOT_SETUP_FAILED            = 280202;      //
+integer BOT_SETUP_RETRY             = 300002;      //
 // integer BOT_COMMAND_FAILED          = 280203;   //
 integer BOT_EVENT_LISTEN_IM         = 280205;      //
 integer BOT_EVENT_LISTEN_SUCCESS    = 280208;      //
@@ -35,6 +36,9 @@ string replyMessage = "Hi, got your IM. How's it going?";
 // Set DEBUG to 1 to enable debug output
 integer DEBUG = 0;
 
+// Number of retries waiting for Control Panel to initialize
+integer retries = 0;
+
 default {
     state_entry() {
         // Setup Device
@@ -49,6 +53,7 @@ default {
         if (num==BOT_SETUP_SUCCESS) {
             // Inform user
             llOwnerSay("Successfully setup bot: " + str);
+            retries = 0;
 
             if (DEBUG == 1) {
                 llMessageLinked(LINK_SET, BOT_SETUP_DEBUG, "1", "");
@@ -56,7 +61,18 @@ default {
                 // Request listen to IMs
                 llMessageLinked(LINK_SET, BOT_LISTEN_IM, "", "");
             }
+        } else if (num==BOT_SETUP_RETRY) {
+            if (retries > 12) {
+                llOwnerSay("Unable to setup bot");
+                retries = 0;
+            } else {
+                llOwnerSay("LifeBots Control Panel is not yet initialized, trying again in 5 seconds...");
+                retries++;
+                llSleep(5.0);
+                llMessageLinked(LINK_SET, BOT_SETUP_SETBOT, botName, botCode);
+            }
         } else if (num==BOT_SETUP_FAILED) {
+            retries = 0;
             // We split the string parameter to the lines
             list parts=llParseString2List(str,["\n"],[]);
 

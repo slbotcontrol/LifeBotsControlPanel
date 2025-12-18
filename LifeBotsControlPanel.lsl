@@ -173,7 +173,9 @@ integer SIM_RETURN_OTHERS_OBJECTS   = 299031;   //
 integer REGION_INFO                 = 299032;   //
 // Body of response to parse
 integer BOT_RESPONSE                = 300000;   //
-// Success/Failure setup codes
+// Success/Failure/State codes
+integer NOTECARD_DONE               = 300001;   // 
+integer BOT_SETUP_RETRY             = 300002;   //
 // TODO: return codes for success or failure    //
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
@@ -195,9 +197,10 @@ key selfCheckRequestId = NULL_KEY;
 // Configuration Notecard
 string CONFIG_CARD = "Configuration";
 integer NotecardLine;
+integer NotecardDone = 0;
 key QueryID;
 
-key Owner = NULL_KEY;
+key ControlPanelOwner = NULL_KEY;
 
 // LifeBots Control Panel sends events to LINK_SET by default
 // You can specify the exact link number of the prim to optimize performance
@@ -273,9 +276,13 @@ integer stringToBoolean(string str) {
         return FALSE; // Handles "false", "no", "off", "0", "" and any other string
     }
 }
+
+api_key_not_set() {
+    llOwnerSay("ERROR: LB_API_KEY not set.");
+    llOwnerSay("Edit the Configuration notecard to set your LifeBots API Key.");
+}
  
-request_secure_url()
-{
+request_secure_url() {
     if (WEBHOOK_URL != "") {
         llReleaseURL(WEBHOOK_URL);
     }
@@ -284,25 +291,29 @@ request_secure_url()
     urlRequestId = llRequestSecureURL();
 }
  
-throw_exception(string inputString)
-{
-    key owner = llGetOwner();
-    llInstantMessage(owner, inputString);
+throw_exception(string inputString) {
+    ControlPanelOwner = llGetOwner();
+    llInstantMessage(ControlPanelOwner, inputString);
 }
 
 default {
  
     state_entry()
     {
-         Owner = llGetOwner();
+         ControlPanelOwner = llGetOwner();
          if (llGetInventoryType(CONFIG_CARD) == INVENTORY_NOTECARD) {
              NotecardLine = 0;
              QueryID = llGetNotecardLine(CONFIG_CARD, NotecardLine);
          }
          else {
-             llOwnerSay("Configuration notecard missing, using defaults.");
+             if ((API_KEY == "") || (API_KEY == "your-api-key")) {
+                 api_key_not_set();
+                 llSetScriptState(llGetScriptName(), FALSE);
+             } else {
+                 llOwnerSay("Configuration notecard missing, using defaults.");
+                 request_secure_url();
+             }
          }
-         request_secure_url();
     }
 
     on_rez(integer param)
@@ -336,20 +347,21 @@ default {
 
     dataserver( key queryid, string data )
     {
-        integer lang_pos;
         list temp;
         string name;
         string value;
         if ( queryid == QueryID ) {
-            if ( data != EOF ) {
+            if ((NotecardDone == 0) && (data != EOF)) {
                 if (data == "END_SETTINGS") {
+                    NotecardDone = 1;
                     if ((API_KEY == "") || (API_KEY == "your-api-key")) {
-                        llOwnerSay("ERROR: LB_API_KEY not set.");
-                        llOwnerSay("Edit the Configuration notecard to set your LifeBots API Key.");
+                        api_key_not_set();
                         llSetScriptState(llGetScriptName(), FALSE);
+                    } else {
+                        // Let everybody know we are done reading the Configuration notecard
+                        llMessageLinked(LINK, NOTECARD_DONE, "", "");
                     }
-                }
-                if ( llGetSubString(data, 0, 0) != "#" && llStringTrim(data, STRING_TRIM) != "" ) {
+                } else if ( llGetSubString(data, 0, 0) != "#" && llStringTrim(data, STRING_TRIM) != "" ) {
                     temp = llParseString2List(data, ["="], []);
                     name = llStringTrim(llList2String(temp, 0), STRING_TRIM);
                     value = llStringTrim(llList2String(temp, 1), STRING_TRIM);
@@ -386,6 +398,8 @@ default {
                 }
                 NotecardLine++;
                 QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
+            } else {
+                NotecardLine = 0;
             }
         }
     }
@@ -480,8 +494,17 @@ default {
             // TODO: Check Bot status and send bot setup success/failure link message
             // Check_Bot_Status();
             // LifeBotsAPI("status", [ ]);
-            llMessageLinked(LINK, BOT_SETUP_SUCCESS, BOT_NAME, trigger);
             // llMessageLinked(LINK, BOT_SETUP_FAILED, BOT_NAME, trigger);
+            if ((API_KEY == "") || (API_KEY == "your-api-key")) {
+                if (NotecardDone == 1) {
+                    api_key_not_set();
+                    llMessageLinked(LINK, BOT_SETUP_FAILED, BOT_NAME, trigger);
+                } else {
+                    llMessageLinked(LINK, BOT_SETUP_RETRY, BOT_NAME, trigger);
+                }
+            } else {
+                llMessageLinked(LINK, BOT_SETUP_SUCCESS, BOT_NAME, trigger);
+            }
         } else if (num == BOT_SETUP_SETLINK) {
             // TODO: validate this is a proper link number for the prim
             llOwnerSay("Setting link number for llMessageLinked calls to: " + message);
@@ -1079,10 +1102,14 @@ default {
             LifeBotsAPI("set_hoverheight", [
               "height", (float)message
             ]);
+        } else if (num == NOTECARD_DONE) {
+            llOwnerSay("Configuration notecard read...");
+            request_secure_url();
         } else {
             // TODO: which others did we not catch in this link_message event
             if (num > 250000) {
-              if ((num != BOT_SETUP_SUCCESS) && (num != BOT_SETUP_FAILED) && (num != BOT_RESPONSE)) {
+              if ((num != BOT_SETUP_SUCCESS) && (num != BOT_SETUP_FAILED) && (num != BOT_SETUP_RETRY) && 
+                  (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
                 llOwnerSay("Unsupported API request: num=" + (string)num + ", message=" + message);
               }
             }

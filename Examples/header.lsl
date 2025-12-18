@@ -14,6 +14,7 @@ integer BOT_LOCATION                = 290232;   //
 integer BOT_SETUP_SETOPTIONS        = 280104;   //
 integer BOT_SETUP_DEVICENAME        = 280103;   //
 integer BOT_SETUP_DEBUG             = 280105;   //
+integer BOT_SETUP_DEBUG_SUCCESS     = 280107;   //
 integer BOT_SETUP_SETLINK           = 280102;   //
                                                 //
 // Communication commands                       //
@@ -148,6 +149,9 @@ integer SIM_RETURN_OBJECTS          = 299029;   //
 integer SIM_RETURN_SCRIPTED_OBJECTS = 299030;   //
 integer SIM_RETURN_OTHERS_OBJECTS   = 299031;   //
 integer REGION_INFO                 = 299032;   //
-// JSON body of response to parse
+// Body of response to parse
 integer BOT_RESPONSE                = 300000;   //
+// Success/Failure/State codes
+integer NOTECARD_DONE               = 300001;   // 
+integer BOT_SETUP_RETRY             = 300002;   //
 //////////////////////////////////////////////////
