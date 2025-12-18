@@ -56,8 +56,7 @@ default {
                 // Request listen to IMs
                 llMessageLinked(LINK_SET, BOT_LISTEN_IM, "", "");
             }
-        }
-        else if (num==BOT_SETUP_FAILED) {
+        } else if (num==BOT_SETUP_FAILED) {
             // We split the string parameter to the lines
             list parts=llParseString2List(str,["\n"],[]);
 
@@ -69,17 +68,15 @@ default {
             llOwnerSay("Bot setup failed:\n"+
               "error code: "+code+"\n"+
               "expired: "+expires);
-        }
-        else if (num==BOT_SETUP_DEBUG_SUCCESS) {
+        } else if (num==BOT_SETUP_DEBUG_SUCCESS) {
             // Request listen to IMs if debug enabled
             if (DEBUG == 1) {
                 llMessageLinked(LINK_SET, BOT_LISTEN_IM, "", "");
             }
-        else if (num==BOT_EVENT_LISTEN_SUCCESS) {
+        } else if (num==BOT_EVENT_LISTEN_SUCCESS) {
             // We are ready!
             llOwnerSay("Auto Responder Ready!");
-        }
-        else if (num==BOT_EVENT_LISTEN_IM) {
+        } else if (num==BOT_EVENT_LISTEN_IM) {
             // Got an IM, auto reply to it
             // Here we could send another linked message requesting the sender
             // Avatar name from UUID and include that in the reply. But we don't.
