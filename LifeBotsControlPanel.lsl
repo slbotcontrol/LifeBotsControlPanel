@@ -417,7 +417,7 @@ default {
     {
         if (LB_DEBUG == 1) {
           llSay(DEBUG_CHANNEL, "In http_response():");
-          llSay(DEBUG_CHANNEL, llList2CSV([request_id, status, metadata, body]));
+          llSay(DEBUG_CHANNEL, llList2CSV([request_id, status, body]));
         }
         if (request_id == selfCheckRequestId)
         {
