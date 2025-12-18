@@ -23,8 +23,11 @@ integer BOT_EVENT_LISTEN_IM         = 280205;      //
 integer BOT_EVENT_LISTEN_SUCCESS    = 280208;      //
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
-// Simple AutoResponder example
+// Simple AutoResponder example with debug
 /////////////////////////////////////////////////////
+string deviceName = "IM Auto Responder";
+string botName = "Bot Name";
+string botCode = "Bot Access Code";
 
 // Message to send in reply to an IM
 string replyMessage = "Hi, got your IM. How's it going?";
