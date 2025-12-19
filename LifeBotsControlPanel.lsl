@@ -855,8 +855,7 @@ default {
               "message", message
             ]);
         // Money
-        // TODO:
-        //   BOT_LISTEN_INVENTORY_OFFER
+        // TODO: BOT_LISTEN_INVENTORY_OFFER
         } else if (num == BOT_LISTEN_MONEY_PAYMENTS) {
             if (WEBHOOK_URL == "") {
                 request_secure_url();
