@@ -426,7 +426,7 @@ default {
             if (LB_DEBUG == 1) {
                 llSay(DEBUG_CHANNEL, "In http_request URL request granted, Webook URL = " + WEBHOOK_URL);
             }
-            // check every 5 mins for dropped URL
+            // Check every 5 mins for dropped URL
             llSetTimerEvent(300.0);
         } else if (method == "GET") {
             responseStatus = 200;
@@ -435,20 +435,12 @@ default {
         } else if (method == "POST") {
             responseStatus = 200;
             action = llJsonGetValue(body, ["action"]);
-            if (action == "balance_changed") {
-                // amount - the amount sent or received
-                // direction - the direction of the payment
-                // source - the source of the payment
-                // destination - the destination of the payment
-                // balance - the new balance
-                // trx_type - the transaction type
-                // TODO: figure out if this is a payment or sent (direction)
-                // if (direction == "???") {
-                // } else {
-                // }
-                amount = llJsonGetValue(body, ["amount"]);
-                uuid = llJsonGetValue(body, ["source"]);
-                llMessageLinked(LINK, BOT_EVENT_LISTEN_MONEY, amount, (key)uuid);
+            if (action == "balance_update") {
+                if (llJsonGetValue(body, ["direction"]) == "INCOMING") {
+                    amount = llJsonGetValue(body, ["amount"]);
+                    uuid = llJsonGetValue(body, ["source"]);
+                    llMessageLinked(LINK, BOT_EVENT_LISTEN_MONEY, amount, (key)uuid);
+                }
             } else if (action == "instant_message") {
                 name = llJsonGetValue(body, ["speaker_name"]);
                 if (name != "Second Life") {
