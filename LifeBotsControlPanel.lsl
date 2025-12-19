@@ -3,10 +3,6 @@
 // This script acts as a bridge between LifeBots  //
 // command and control scripts and LifeBots bots  //
 //                                                //
-// On touch the LifeBots Control Panel presents a //
-// dialog menu with command and control choices   //
-// depending on what user scripts are present     //
-//                                                //
 ////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////
@@ -387,6 +383,10 @@ default {
                     } else if ( name == "DATATYPE" ) {
                         if ((value == "URLENCODE") || (value == "JSON")) {
                             DATATYPE = value;
+                        } else if (value == "urlencode") {
+                            DATATYPE = "URLENCODE";
+                        } else if (value == "json") {
+                            DATATYPE = "JSON";
                         } else {
                             llOwnerSay("WARNING: unsupported DATATYPE " + value + " specified in Configuration");
                         }
@@ -846,8 +846,8 @@ default {
               "avatar", (string)trigger,
               "message", message
             ]);
-        // Money
         // TODO: BOT_LISTEN_INVENTORY_OFFER
+        // Money
         } else if (num == BOT_LISTEN_MONEY_PAYMENTS) {
             if (WEBHOOK_URL == "") {
                 request_secure_url();
