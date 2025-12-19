@@ -408,6 +408,10 @@ default {
     {
         integer responseStatus = 400;
         string responseBody = "Unsupported method";
+        string action = "";
+        string amount = "";
+        string name = "";
+        string uuid = "";
 
         if (LB_DEBUG == 1) {
           llSay(DEBUG_CHANNEL, "In http_request():");
@@ -428,10 +432,37 @@ default {
             responseBody = "Hello world!";
             llHTTPResponse(id, responseStatus, responseBody);
         } else if (method == "POST") {
-            llSay(DEBUG_CHANNEL, "In http_request POST method, body = " + body);
-            // TODO: replace this test link message with parsed body and appropriate link messages
-            // BOT_EVENT_LISTEN_IM
-            llMessageLinked(LINK, BOT_EVENT_LISTEN_IM, body, id);
+            responseStatus = 200;
+            action = llJsonGetValue(body, ["action"]);
+            if (action == "balance_changed") {
+                // amount - the amount sent or received
+                // direction - the direction of the payment
+                // source - the source of the payment
+                // destination - the destination of the payment
+                // balance - the new balance
+                // trx_type - the transaction type
+                // TODO: figure out if this is a payment or sent (direction)
+                // if (direction == "???") {
+                // } else {
+                // }
+                amount = llJsonGetValue(body, ["amount"]);
+                uuid = llJsonGetValue(body, ["source"]);
+                llMessageLinked(LINK, BOT_EVENT_LISTEN_MONEY, amount, (key)uuid);
+            } else if (action == "instant_message") {
+                name = llJsonGetValue(body, ["speaker_name"]);
+                if (name != "Second Life") {
+                    message = llJsonGetValue(body, ["message"]);
+                    uuid = llJsonGetValue(body, ["speaker_uuid"]);
+                    llMessageLinked(LINK, BOT_EVENT_LISTEN_IM, message, (key)uuid);
+                }
+            } else if (action == "chat_message") {
+                name = llJsonGetValue(body, ["speaker_name"]);
+                if (name != "Second Life") {
+                    message = llJsonGetValue(body, ["message"]);
+                    uuid = llJsonGetValue(body, ["speaker_uuid"]);
+                    llMessageLinked(LINK, BOT_EVENT_LISTEN_LOCAL_CHAT, message, (key)uuid);
+                }
+            }
         } else if ((method == "PUT") || (method == "DELETE")) {
             responseStatus = 403;
             responseBody = "forbidden";
@@ -565,11 +596,17 @@ default {
                 OWNERCHANGE_RESET = 1;
             }
         // Communication commands
-        // TODO:
-        //   BOT_LISTEN_LOCAL_CHAT
-        //   "url": "https://your-server.com/webhook",
-        //   "events": "im,teleport,login", or "all"
-        //   "operation": "add", "remove", or "list"
+        } else if (num == BOT_LISTEN_LOCAL_CHAT) {
+            if (WEBHOOK_URL == "") {
+                request_secure_url();
+            } else {
+                llOwnerSay("Sending bot listen chat request...");
+                LifeBotsAPI("set_http_callback", [
+                  "url", WEBHOOK_URL,
+                  "events", "chat_message",
+                  "operation", "add"
+                ]);
+            }
         } else if (num == BOT_LISTEN_IM) {
             if (WEBHOOK_URL == "") {
                 request_secure_url();
@@ -819,7 +856,17 @@ default {
         // Money
         // TODO:
         //   BOT_LISTEN_INVENTORY_OFFER
-        //   BOT_LISTEN_MONEY_PAYMENTS
+        } else if (num == BOT_LISTEN_MONEY_PAYMENTS) {
+            if (WEBHOOK_URL == "") {
+                request_secure_url();
+            } else {
+                llOwnerSay("Sending bot listen money payments request...");
+                LifeBotsAPI("set_http_callback", [
+                  "url", WEBHOOK_URL,
+                  "events", "balance_changed",
+                  "operation", "add"
+                ]);
+            }
         } else if (num == BOT_GIVE_MONEY_OBJECT) {
             llOwnerSay("Sending bot give money object request...");
             LifeBotsAPI("give_money_object", [
@@ -1129,7 +1176,8 @@ default {
             // Remove when development completed
             if (num > 250000) {
               if ((num != BOT_SETUP_SUCCESS) && (num != BOT_SETUP_FAILED) && (num != BOT_SETUP_RETRY) && 
-                  (num != BOT_EVENT_LISTEN_IM) && (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
+                  (num != BOT_EVENT_LISTEN_IM) && (num != BOT_EVENT_LISTEN_LOCAL_CHAT) &&
+                  (num != BOT_EVENT_LISTEN_MONEY) && (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
                 llOwnerSay("Unsupported API request: num=" + (string)num + ", message=" + message);
               }
             }
