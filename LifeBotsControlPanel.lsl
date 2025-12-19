@@ -406,20 +406,39 @@ default {
 
     http_request(key id, string method, string body)
     {
-        if (method == URL_REQUEST_DENIED)
+        integer responseStatus = 400;
+        string responseBody = "Unsupported method";
+
+        if (LB_DEBUG == 1) {
+          llSay(DEBUG_CHANNEL, "In http_request():");
+          llSay(DEBUG_CHANNEL, llList2CSV([id, method, body]));
+        }
+
+        if (method == URL_REQUEST_DENIED) {
             throw_exception("Error while attempting to get a free URL for this device:\n \n" + body);
- 
-        else if (method == URL_REQUEST_GRANTED)
-        {
+        } else if (method == URL_REQUEST_GRANTED) {
             WEBHOOK_URL = body;
             if (LB_DEBUG == 1) {
-                llSay(DEBUG_CHANNEL, "In http_request Webook URL = " + WEBHOOK_URL);
+                llSay(DEBUG_CHANNEL, "In http_request URL request granted, Webook URL = " + WEBHOOK_URL);
             }
             // check every 5 mins for dropped URL
             llSetTimerEvent(300.0);
+        } else if (method == "GET") {
+            responseStatus = 200;
+            responseBody = "Hello world!";
+            llHTTPResponse(id, responseStatus, responseBody);
+        } else if (method == "POST") {
+            llSay(DEBUG_CHANNEL, "In http_request POST method, body = " + body);
+            // TODO: replace this test link message with parsed body and appropriate link messages
+            // BOT_EVENT_LISTEN_IM
+            llMessageLinked(LINK, BOT_EVENT_LISTEN_IM, body, id);
+        } else if ((method == "PUT") || (method == "DELETE")) {
+            responseStatus = 403;
+            responseBody = "forbidden";
+            llHTTPResponse(id, responseStatus, responseBody);
         }
     }
- 
+
     timer()
     {
         selfCheckRequestId = llHTTPRequest(WEBHOOK_URL,
@@ -1107,9 +1126,10 @@ default {
             request_secure_url();
         } else {
             // TODO: which others did we not catch in this link_message event
+            // Remove when development completed
             if (num > 250000) {
               if ((num != BOT_SETUP_SUCCESS) && (num != BOT_SETUP_FAILED) && (num != BOT_SETUP_RETRY) && 
-                  (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
+                  (num != BOT_EVENT_LISTEN_IM) && (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
                 llOwnerSay("Unsupported API request: num=" + (string)num + ", message=" + message);
               }
             }
