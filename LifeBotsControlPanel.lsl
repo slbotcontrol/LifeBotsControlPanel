@@ -410,6 +410,7 @@ default {
         string responseBody = "Unsupported method";
         string action = "";
         string amount = "";
+        string message = "";
         string name = "";
         string uuid = "";
 
