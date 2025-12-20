@@ -6,9 +6,11 @@
 
 The `LifeBots Control Panel` is a scripted in-world object that acts as a bridge between your `LifeBots` management scripts and your `LifeBots` bots. The control panel communicates with your bots using the `LifeBots API` and an HTTP server listening to events.
 
+`LifeBots Control Panel` is compatible with `SmartBots TotalControl` scripts. Existing `SmartBots TotalControl` scripts can be modified, replacing the bot name and bot code with your `LifeBots` bot name and bot code, and used exactly as-is in `LifeBots Control Panel`.
+
 ## Deployment
 
-Download the `LifeBotsControlPanel.lsl` script and `Configuration` notecard.
+Download the `LifeBotsControlPanel.lsl` script, the `Configuration` notecard, and the `header.lsl`.
 
 In Second Life create a new script named `LifeBotsControlPanel` and copy the contents of `LifeBotsControlPanel.lsl` into this new script. Similarly, create a new notecard named `Configuration` and copy the contents of `Configuration` into this new notecard.
 
@@ -19,6 +21,8 @@ You do not need to edit the `LifeBotsControlPanel` script.
 Create a new object, right click the object and select `Edit`.
 
 Copy the `LifeBotsControlPanel` script and `Configuration` notecard into the `Contents` tab of the new object.
+
+Create a new command and control script or modify an existing `SmartBots TotalControl` script. Include the `header.lsl` control codes in your command and control script.
 
 Copy your `LifeBots` command and control script into the `Contents` tab of the new object. If you do not have a command and control script then you can use one of the examples described below.
 

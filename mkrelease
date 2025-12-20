@@ -61,6 +61,7 @@ gh release create v${VERSION} ${DRAFT} \
                   --notes-file Release_Notes.md \
                   LifeBotsControlPanel.lsl \
                   Configuration \
+                  Examples/header.lsl \
                   LifeBotsControlPanel-${VERSION}.tar.gz
 
 git fetch --tags origin
