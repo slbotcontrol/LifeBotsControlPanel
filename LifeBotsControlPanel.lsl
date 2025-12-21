@@ -136,6 +136,7 @@ integer SCAN_AVATARS                = 299021;   //
 integer UUID_TO_NAME                = 299021;   //
 integer NAME_TO_UUID                = 299021;   //
 // Communication
+integer INVENTORY_OFFER_ACCEPT      = 299999;   //
 integer TELEPORT_OFFER_ACCEPT       = 299033;   //
 integer TELEPORT_OFFER_DECLINE      = 299034;   //
 // Group Management
@@ -412,6 +413,7 @@ default {
         string amount = "";
         string message = "";
         string name = "";
+        string object = "";
         string uuid = "";
 
         if (LB_DEBUG == 1) {
@@ -454,6 +456,26 @@ default {
                     message = llJsonGetValue(body, ["message"]);
                     uuid = llJsonGetValue(body, ["speaker_uuid"]);
                     llMessageLinked(LINK, BOT_EVENT_LISTEN_LOCAL_CHAT, message, (key)uuid);
+                }
+            } else if (action == "script_dialog") {
+                // TODO: In debug mode examine the args coming in and reverse engineer this
+                // Documentation for this is missing
+                // name = llJsonGetValue(body, ["sender_name"]);
+                // object = llJsonGetValue(body, ["object"]);
+                // message = llJsonGetValue(body, ["message"]);
+                // uuid = llJsonGetValue(body, ["sender_uuid"]);
+                // llMessageLinked(LINK, BOT_EVENT_LISTEN_INVENTORY, name + ";" + object + ";" + message, (key)uuid);
+                llOwnerSay("body = " + body);
+            } else if (action == "offer_inventory") {
+                name = llJsonGetValue(body, ["sender_name"]);
+                object = llJsonGetValue(body, ["object"]);
+                message = llJsonGetValue(body, ["message"]);
+                uuid = llJsonGetValue(body, ["sender_uuid"]);
+                llMessageLinked(LINK, BOT_EVENT_LISTEN_INVENTORY, name + ";" + object + ";" + message, (key)uuid);
+            } else {
+                if (LB_DEBUG == 1) {
+                    llSay(DEBUG_CHANNEL, "Uncaught:");
+                    llSay(DEBUG_CHANNEL, llList2CSV([(string)id, method, body]));
                 }
             }
         } else if ((method == "PUT") || (method == "DELETE")) {
@@ -846,7 +868,49 @@ default {
               "avatar", (string)trigger,
               "message", message
             ]);
-        // TODO: BOT_LISTEN_INVENTORY_OFFER
+        } else if (num == BOT_LISTEN_INVENTORY_OFFER) {
+            if (WEBHOOK_URL == "") {
+                request_secure_url();
+            } else {
+                llOwnerSay("Sending bot listen inventory offer request...");
+                LifeBotsAPI("set_http_callback", [
+                  "url", WEBHOOK_URL,
+                  "events", "offer_inventory",
+                  "operation", "add"
+                ]);
+            }
+        } else if (num == INVENTORY_OFFER_ACCEPT) {
+            // TODO: inventory_offer_accept is not documented
+            // Remove these two lines after debugging and figuring out the args
+            llOwnerSay("INVENTORY_OFFER_ACCEPT message = " + message);
+            llOwnerSay("INVENTORY_OFFER_ACCEPT trigger = " + (string)trigger);
+            // Split the message parameter into list
+            list offstr=llParseString2List(message,[";"],[]);
+            string i_offer_type = llList2String(offstr,0);
+            string i_object = llList2String(offstr,1);
+            string i_sender = llList2String(offstr,2);
+            //string i_folder = llList2String(offstr,3);
+            llOwnerSay("Sending bot inventory offer accept request...");
+            LifeBotsAPI("inventory_offer_accept", [
+                "offer_type", i_offer_type,
+                "object", i_object,
+                "sender_uuid", i_sender,
+                //"folder", i_folder,
+                "session", (string)trigger,
+                "accept", 1
+            ]);
+        // TODO: cannot get this to trigger in my tests
+        } else if (num == BOT_LISTEN_DIALOG) {
+            if (WEBHOOK_URL == "") {
+                request_secure_url();
+            } else {
+                llOwnerSay("Sending bot listen dialog request...");
+                LifeBotsAPI("set_http_callback", [
+                  "url", WEBHOOK_URL,
+                  "events", "script_dialog",
+                  "operation", "add"
+                ]);
+            }
         // Money
         } else if (num == BOT_LISTEN_MONEY_PAYMENTS) {
             if (WEBHOOK_URL == "") {
@@ -1001,7 +1065,6 @@ default {
               "avatar", (string)trigger
             ]);
         // Miscellaneous commands
-        // TODO: BOT_LISTEN_DIALOG
         } else if (num == BOT_DIALOG_REPLY) {
             // Split the message parameter into list
             list repstr=llParseString2List(message,["\n"],[]);
@@ -1168,7 +1231,7 @@ default {
             // Remove when development completed
             if (num > 250000) {
               if ((num != BOT_SETUP_SUCCESS) && (num != BOT_SETUP_FAILED) && (num != BOT_SETUP_RETRY) && 
-                  (num != BOT_EVENT_LISTEN_IM) && (num != BOT_EVENT_LISTEN_LOCAL_CHAT) &&
+                  (num != BOT_EVENT_LISTEN_INVENTORY) && (num != BOT_EVENT_LISTEN_IM) && (num != BOT_EVENT_LISTEN_LOCAL_CHAT) &&
                   (num != BOT_EVENT_LISTEN_MONEY) && (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
                 llOwnerSay("Unsupported API request: num=" + (string)num + ", message=" + message);
               }
