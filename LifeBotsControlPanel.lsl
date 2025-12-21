@@ -464,7 +464,7 @@ default {
                 // object = llJsonGetValue(body, ["object"]);
                 // message = llJsonGetValue(body, ["message"]);
                 // uuid = llJsonGetValue(body, ["sender_uuid"]);
-                // llMessageLinked(LINK, BOT_EVENT_LISTEN_INVENTORY, name + ";" + object + ";" + message, (key)uuid);
+                // llMessageLinked(LINK, BOT_EVENT_LISTEN_DIALOG, name + ";" + object + ";" + message, (key)uuid);
                 llOwnerSay("body = " + body);
             } else if (action == "offer_inventory") {
                 name = llJsonGetValue(body, ["sender_name"]);
@@ -523,10 +523,37 @@ default {
                     llOwnerSay("✗ Unable to parse result - check response");
                 }
             } else {
-                if (llJsonGetValue( body, ["result"]) == "OK") {
+                string result = llJsonGetValue(body, ["result"]);
+                if (result == "OK") {
+                    string action = llJsonGetValue(body, ["action"]);
                     llOwnerSay("✓ Command executed successfully");
+                    if (action == "bot_location") {
+                        string region = llJsonGetValue(body, ["region"]);
+                        string x = llJsonGetValue(body, ["x"]);
+                        string y = llJsonGetValue(body, ["y"]);
+                        string z = llJsonGetValue(body, ["z"]);
+                        llMessageLinked(LINK, BOT_LOCATION_REPLY, region + "\n" + x + "\n" + y + "\n" + z, NULL_KEY);
+                    } else if (action == "attachments") {
+                        llMessageLinked(LINK, BOT_ATTACHMENTS_REPLY, llJsonGetValue(body, ["attachments"]), NULL_KEY);
+                    } else if (action == "get_balance") {
+                        llMessageLinked(LINK, BOT_GET_BALANCE_REPLY, llJsonGetValue(body, ["balance"]), NULL_KEY);
+                    } else if (action == "status") {
+                        llMessageLinked(LINK, BOT_EVENT_STATUS_REPLY, llJsonGetValue(body, ["status"]) + "\nexpiration date unknown", NULL_KEY);
+                    } else if (action == "listgroups") {
+                        llMessageLinked(LINK, BOT_LIST_GROUPS_REPLY, llJsonGetValue(body, ["groups"]), NULL_KEY);
+                    } else if (action == "list_group_roles") {
+                        llMessageLinked(LINK, BOT_LIST_GROUP_ROLES_REPLY, llJsonGetValue(body, ["roles"]), NULL_KEY);
+                    } else if (action == "notecard_create") {
+                        llMessageLinked(LINK, BOT_NOTECARD_CREATE_REPLY, "", (key)llJsonGetValue(body, ["uuid"]));
+                    } else if (action == "notecard_read") {
+                        llMessageLinked(LINK, BOT_NOTECARD_READ_REPLY, llJsonGetValue(body, ["text"]), NULL_KEY);
+                    } else if (action == "set_http_callback") {
+                        llMessageLinked(LINK, BOT_EVENT_LISTEN_SUCCESS, "", NULL_KEY);
+                    }
                 } else if (llJsonGetValue( body, ["result"]) == "FAIL") {
+                    string resulttext = llJsonGetValue(body, ["resulttext"]);
                     llOwnerSay("✗ Command failed - check response");
+                    llMessageLinked(LINK, BOT_COMMAND_FAILED, result + "\n" + resulttext, NULL_KEY);
                 } else {
                     llOwnerSay("✗ Unable to parse result - check response");
                 }
