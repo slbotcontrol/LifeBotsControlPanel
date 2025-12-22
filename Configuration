@@ -28,6 +28,12 @@ END_SETTINGS
 #
 # LifeBots Developer API Key
 #LB_API_KEY = your-api-key
+#
+# Send the result of actions to the Owner in chat (default: FALSE)
+# The result body is returned to the command and control script.
+# Setting this to TRUE will cause the result body to also be sent to owner chat
+#OWNERSAY_RESULT = FALSE
+#
 # LifeBots bot secret, OPTIONAL
 #     This will be the default LifeBots bot secret if set
 #     If set in the user's command script that value will override this

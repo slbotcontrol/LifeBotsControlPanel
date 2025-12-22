@@ -13,7 +13,7 @@ your `LifeBots` bot name and bot code, and used exactly as-is in `LifeBots Contr
 ## Table of Contents
 
 - [What is LifeBots](#what-is-lifebots)
-- [Control Panel Features](#control-panel-features)
+- [LifeBots Control Panel Features](#lifebots-control-panel-features)
 - [Using LifeBots Control Panel](#using-lifebots-control-panel)
 - [Control Panel Setup](#control-panel-setup)
 - [Control Panel Commands](#control-panel-commands)
@@ -64,7 +64,7 @@ as such, is free to download, deploy, modify, and redistribute. All modification
 and derivative works must comply with the license and make their modifications
 freely available under the terms of the GNU General Public License version 3.
 
-## Control Panel Features
+## LifeBots Control Panel Features
 
 - Login / Logout your Bot
 - Bot Movement Controls (e.g. Fly, Sit, Stand, Teleport, Walk, Walk To)
@@ -74,8 +74,9 @@ freely available under the terms of the GNU General Public License version 3.
 - Manage Communication (Send & Receive IMs, Local, & Group Chat, Offer Teleport, etc)
 - Pay Avatars/Objects
 - List, Manage, & Send Inventory
-- Sim Management
+- Sim Management (if bot has Sim rights)
 - Trigger Bot actions on Events (e.g. Sit on object when Bot receives payment)
+- Create, read, edit, and send notecards
 - Much more, see the [Commands Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md) for a full listing
 
 All you need is to call `llMessageLinked` LSL function. For example, to send a group

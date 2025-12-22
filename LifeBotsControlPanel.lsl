@@ -209,6 +209,10 @@ string DATATYPE = "JSON";
 // Whether to reset on change of object ownership, default is reset
 integer OWNERCHANGE_RESET = 1;
 
+// Whether to send result to Owner chat as well as back to the user script
+// By default the result body is only sent back to the script to parse
+integer OWNERSAY_RESULT = 0;
+
 // 0 = debug off, 1 = debug on
 integer LB_DEBUG = 0;
 
@@ -220,9 +224,10 @@ LifeBotsAPI(string command, list params) {
         llSay(DEBUG_CHANNEL, "API_KEY = " + API_KEY);
         llSay(DEBUG_CHANNEL, "BOT_NAME = " + BOT_NAME);
         llSay(DEBUG_CHANNEL, "BOT_SECRET = " + BOT_SECRET);
+        llSay(DEBUG_CHANNEL, "DATATYPE = " + DATATYPE);
     }
     // Populate the query data
-    if (DATATYPE = "URLENCODE") {
+    if (DATATYPE == "URLENCODE") {
         query = [
             "action="  + command,
             "apikey="  + llEscapeURL(API_KEY),
@@ -237,11 +242,6 @@ LifeBotsAPI(string command, list params) {
             "secret="  + llEscapeURL(BOT_SECRET),
             "dataType=json"
         ];
-    }
-    if (LB_DEBUG == 1) {
-        llSay(DEBUG_CHANNEL, "API_KEY = " + API_KEY);
-        llSay(DEBUG_CHANNEL, "BOT_NAME = " + BOT_NAME);
-        llSay(DEBUG_CHANNEL, "BOT_SECRET = " + BOT_SECRET);
     }
 
     integer i;
@@ -291,6 +291,60 @@ request_secure_url() {
 throw_exception(string inputString) {
     ControlPanelOwner = llGetOwner();
     llInstantMessage(ControlPanelOwner, inputString);
+}
+
+// Convert HTTP response in URL encoded format to JSON
+string resultToJson(string bodyResult) {
+    string decoded_body = llUnescapeURL(bodyResult);
+    // The body will typically be in the format "var1=value1&var2=value2"
+    list pairs = llParseString2List(decoded_body, ["&"], []);
+    integer pairsLength = llGetListLength(pairs);
+    integer lastPair = pairsLength - 1;
+    string jsonResult = "{";
+    // Not sure if this catches all nested lists, maybe only top level key/value pairs
+    // People should just use JSON as the HTTP response format but we support URL encoded
+    // responses in order to provide backward compatibility with TotalControl scripts.
+    integer i;
+    for (i = 0; i < pairsLength; i++)
+    {
+        list kvp = llParseString2List(llList2String(pairs, i), ["="], []);
+        string lky = llList2String(kvp, 0);
+        string value = llList2String(kvp, 1);
+        // llOwnerSay("Key: " + lky + ", Value: " + value);
+        if (i == lastPair) {
+            jsonResult = jsonResult + "\"" + lky + "\": \"" + value + "\"}";
+        } else {
+            jsonResult = jsonResult + "\"" + lky + "\": \"" + value + "\",";
+        }
+    }
+    return jsonResult;
+}
+
+processJsonResult(string jsonBody) {
+    string action = llJsonGetValue(jsonBody, ["action"]);
+    if (action == "bot_location") {
+        string region = llJsonGetValue(jsonBody, ["region"]);
+        string x = llJsonGetValue(jsonBody, ["x"]);
+        string y = llJsonGetValue(jsonBody, ["y"]);
+        string z = llJsonGetValue(jsonBody, ["z"]);
+        llMessageLinked(LINK, BOT_LOCATION_REPLY, region + "\n" + x + "\n" + y + "\n" + z, NULL_KEY);
+    } else if (action == "attachments") {
+        llMessageLinked(LINK, BOT_ATTACHMENTS_REPLY, llJsonGetValue(jsonBody, ["attachments"]), NULL_KEY);
+    } else if (action == "get_balance") {
+        llMessageLinked(LINK, BOT_GET_BALANCE_REPLY, llJsonGetValue(jsonBody, ["balance"]), NULL_KEY);
+    } else if (action == "status") {
+        llMessageLinked(LINK, BOT_EVENT_STATUS_REPLY, llJsonGetValue(jsonBody, ["status"]) + "\nexpiration date unknown", NULL_KEY);
+    } else if (action == "listgroups") {
+        llMessageLinked(LINK, BOT_LIST_GROUPS_REPLY, llJsonGetValue(jsonBody, ["groups"]), NULL_KEY);
+    } else if (action == "list_group_roles") {
+        llMessageLinked(LINK, BOT_LIST_GROUP_ROLES_REPLY, llJsonGetValue(jsonBody, ["roles"]), NULL_KEY);
+    } else if (action == "notecard_create") {
+        llMessageLinked(LINK, BOT_NOTECARD_CREATE_REPLY, "", (key)llJsonGetValue(jsonBody, ["uuid"]));
+    } else if (action == "notecard_read") {
+        llMessageLinked(LINK, BOT_NOTECARD_READ_REPLY, llJsonGetValue(jsonBody, ["text"]), NULL_KEY);
+    } else if (action == "set_http_callback") {
+        llMessageLinked(LINK, BOT_EVENT_LISTEN_SUCCESS, "", NULL_KEY);
+    }
 }
 
 default {
@@ -393,6 +447,8 @@ default {
                         }
                     } else if ( name == "OWNERCHANGE_RESET" ) {
                         OWNERCHANGE_RESET = (integer)value;
+                    } else if ( name == "OWNERSAY_RESULT" ) {
+                        OWNERSAY_RESULT = (integer)value;
                     } else if ( name == "DEBUG" ) {
                         LB_DEBUG = (integer)value;
                     }
@@ -495,8 +551,8 @@ default {
     http_response(key request_id, integer status, list metadata, string body)
     {
         if (LB_DEBUG == 1) {
-          llSay(DEBUG_CHANNEL, "In http_response():");
-          llSay(DEBUG_CHANNEL, llList2CSV([request_id, status, body]));
+            llSay(DEBUG_CHANNEL, "In http_response():");
+            llSay(DEBUG_CHANNEL, llList2CSV([request_id, status, body]));
         }
         if (request_id == selfCheckRequestId)
         {
@@ -508,50 +564,36 @@ default {
             throw_exception("Too many HTTP requests too fast!");
         } else if (status == 200) {
             llOwnerSay("✓ Success!");
-            // llOwnerSay("Response:\n" + llJsonGetValue(body, []));
-            llOwnerSay("Response: " + body);
-            // In case the user wishes to parse the JSON body
+            if (OWNERSAY_RESULT == 1) {
+                llOwnerSay("Response: " + body);
+            }
+            // Return the response to the user script to parse
             llMessageLinked(LINK, BOT_RESPONSE, body, NULL_KEY);
             
-            // Parse response for success or failure
+            // If Data Type is configured as URLENCODE then convert response to JSON
+            // Parse response for success or failure and process any events
+            string result;
+            string resulttext;
             if (DATATYPE = "URLENCODE") {
                 if (llSubStringIndex(body, "result=OK") != -1) {
                     llOwnerSay("✓ Command executed successfully");
+                    processJsonResult(resultToJson(body));
                 } else if (llSubStringIndex(body, "result=FAIL") != -1) {
+                    string jbod = resultToJson(body);
+                    result = llJsonGetValue(jbod, ["result"]);
+                    resulttext = llJsonGetValue(jbod, ["resulttext"]);
                     llOwnerSay("✗ Command failed - check response");
+                    llMessageLinked(LINK, BOT_COMMAND_FAILED, result + "\n" + resulttext, NULL_KEY);
                 } else {
                     llOwnerSay("✗ Unable to parse result - check response");
                 }
             } else {
-                string result = llJsonGetValue(body, ["result"]);
+                result = llJsonGetValue(body, ["result"]);
                 if (result == "OK") {
-                    string action = llJsonGetValue(body, ["action"]);
                     llOwnerSay("✓ Command executed successfully");
-                    if (action == "bot_location") {
-                        string region = llJsonGetValue(body, ["region"]);
-                        string x = llJsonGetValue(body, ["x"]);
-                        string y = llJsonGetValue(body, ["y"]);
-                        string z = llJsonGetValue(body, ["z"]);
-                        llMessageLinked(LINK, BOT_LOCATION_REPLY, region + "\n" + x + "\n" + y + "\n" + z, NULL_KEY);
-                    } else if (action == "attachments") {
-                        llMessageLinked(LINK, BOT_ATTACHMENTS_REPLY, llJsonGetValue(body, ["attachments"]), NULL_KEY);
-                    } else if (action == "get_balance") {
-                        llMessageLinked(LINK, BOT_GET_BALANCE_REPLY, llJsonGetValue(body, ["balance"]), NULL_KEY);
-                    } else if (action == "status") {
-                        llMessageLinked(LINK, BOT_EVENT_STATUS_REPLY, llJsonGetValue(body, ["status"]) + "\nexpiration date unknown", NULL_KEY);
-                    } else if (action == "listgroups") {
-                        llMessageLinked(LINK, BOT_LIST_GROUPS_REPLY, llJsonGetValue(body, ["groups"]), NULL_KEY);
-                    } else if (action == "list_group_roles") {
-                        llMessageLinked(LINK, BOT_LIST_GROUP_ROLES_REPLY, llJsonGetValue(body, ["roles"]), NULL_KEY);
-                    } else if (action == "notecard_create") {
-                        llMessageLinked(LINK, BOT_NOTECARD_CREATE_REPLY, "", (key)llJsonGetValue(body, ["uuid"]));
-                    } else if (action == "notecard_read") {
-                        llMessageLinked(LINK, BOT_NOTECARD_READ_REPLY, llJsonGetValue(body, ["text"]), NULL_KEY);
-                    } else if (action == "set_http_callback") {
-                        llMessageLinked(LINK, BOT_EVENT_LISTEN_SUCCESS, "", NULL_KEY);
-                    }
+                    processJsonResult(body);
                 } else if (llJsonGetValue( body, ["result"]) == "FAIL") {
-                    string resulttext = llJsonGetValue(body, ["resulttext"]);
+                    resulttext = llJsonGetValue(body, ["resulttext"]);
                     llOwnerSay("✗ Command failed - check response");
                     llMessageLinked(LINK, BOT_COMMAND_FAILED, result + "\n" + resulttext, NULL_KEY);
                 } else {
@@ -560,7 +602,10 @@ default {
             }
         } else {
             llOwnerSay("✗ HTTP Error: " + (string)status);
-            llOwnerSay("Response: " + body);
+            llMessageLinked(LINK, BOT_COMMAND_FAILED, (string)status + "\nHTTP Error", NULL_KEY);
+            if (OWNERSAY_RESULT == 1) {
+                llOwnerSay("Response: " + body);
+            }
         }
     }
 

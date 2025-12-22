@@ -45,7 +45,11 @@ default {
             llOwnerSay("ERROR: LifeBots Control Panel setup failed for " + deviceName);
         } else if (num == BOT_RESPONSE) {
             string displayName = llGetDisplayName(touchUUID);
-            llSay(0, displayName + " profile picks:\n" + llJsonGetValue(str, ["picks"]));
+            if (llJsonGetValue(str, ["picks"]) == JSON_INVALID) {
+                llSay(0, displayName + " profile picks:\n" + str);
+            } else {
+                llSay(0, displayName + " profile picks:\n" + llJsonGetValue(str, ["picks"]));
+            }
         }
     }
 }
