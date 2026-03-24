@@ -19,8 +19,8 @@ The following table shows input values (you send them with the API call) and ret
 
 One of the following events will be generated:
 
-- [BOT_SETUP_SUCCESS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_SUCCESS.md)
-- [BOT_SETUP_FAILED](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_FAILED.md)
+- [BOT_SETUP_SUCCESS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_SUCCESS.md)
+- [BOT_SETUP_FAILED](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_FAILED.md)
 
 ## Example
 

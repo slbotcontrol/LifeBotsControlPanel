@@ -9,134 +9,134 @@ LifeBots API Extensions are in bold and starred.
 
 ### Setup and startup
 
-- [BOT_SETUP_SETBOT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_SETBOT.md)
-- [BOT_STATUS_QUERY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_STATUS_QUERY.md)
-- [BOT_RESET_CONTROLPANEL](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_RESET_CONTROLPANEL.md)
-- [BOT_SETUP_SETOPTIONS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_SETOPTIONS.md)
-- [BOT_SETUP_DEVICENAME](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_DEVICENAME.md)
-- [BOT_SETUP_DEBUG](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_DEBUG.md)
-- [BOT_SETUP_SETLINK](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_SETLINK.md)
+- [BOT_SETUP_SETBOT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_SETBOT.md)
+- [BOT_STATUS_QUERY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_STATUS_QUERY.md)
+- [BOT_RESET_CONTROLPANEL](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_RESET_CONTROLPANEL.md)
+- [BOT_SETUP_SETOPTIONS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_SETOPTIONS.md)
+- [BOT_SETUP_DEVICENAME](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_DEVICENAME.md)
+- [BOT_SETUP_DEBUG](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_DEBUG.md)
+- [BOT_SETUP_SETLINK](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SETUP_SETLINK.md)
 
 ### Bot Status
 
-- [BOT_LOGIN](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LOGIN.md)
-- [BOT_LOGOUT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LOGOUT.md)
-- [BOT_LOCATION](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LOCATION.md)
+- [BOT_LOGIN](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LOGIN.md)
+- [BOT_LOGOUT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LOGOUT.md)
+- [BOT_LOCATION](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LOCATION.md)
 
 ### Communication
 
-- [BOT_SAY_CHAT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SAY_CHAT.md)
-- [BOT_INSTANT_MESSAGE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_INSTANT_MESSAGE.md)
-- [BOT_SAY_GROUP_CHAT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SAY_GROUP_CHAT.md)
-- [BOT_SEND_NOTICE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SEND_NOTICE.md)
-- [BOT_OFFER_TELEPORT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_OFFER_TELEPORT.md)
-- [BOT_LISTEN_LOCAL_CHAT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_LOCAL_CHAT.md)
-- [BOT_LISTEN_IM](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_IM.md)
-- [BOT_LISTEN_DIALOG](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_DIALOG.md)
-- [BOT_DIALOG_REPLY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_DIALOG_REPLY.md)
-- **[TELEPORT_OFFER_ACCEPT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/TELEPORT_OFFER_ACCEPT.md)** \*
-- **[TELEPORT_OFFER_DECLINE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/TELEPORT_OFFER_DECLINE.md)** \*
+- [BOT_SAY_CHAT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SAY_CHAT.md)
+- [BOT_INSTANT_MESSAGE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_INSTANT_MESSAGE.md)
+- [BOT_SAY_GROUP_CHAT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SAY_GROUP_CHAT.md)
+- [BOT_SEND_NOTICE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SEND_NOTICE.md)
+- [BOT_OFFER_TELEPORT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_OFFER_TELEPORT.md)
+- [BOT_LISTEN_LOCAL_CHAT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_LOCAL_CHAT.md)
+- [BOT_LISTEN_IM](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_IM.md)
+- [BOT_LISTEN_DIALOG](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_DIALOG.md)
+- [BOT_DIALOG_REPLY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_DIALOG_REPLY.md)
+- **[TELEPORT_OFFER_ACCEPT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/TELEPORT_OFFER_ACCEPT.md)** \*
+- **[TELEPORT_OFFER_DECLINE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/TELEPORT_OFFER_DECLINE.md)** \*
 
 ### Movement
 
-- [BOT_WALK](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_WALK.md)
-- [BOT_WALKTO](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_WALKTO.md)
-- [BOT_TELEPORT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_TELEPORT.md)
-- [BOT_FLY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_FLY.md)
-- [BOT_SIT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SIT.md)
-- [BOT_STAND](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_STAND.md)
-- **[ALWAYS_RUN](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/ALWAYS_RUN.md)** \*
-- **[ALWAYS_WALK](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/ALWAYS_WALK.md)** \*
+- [BOT_WALK](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_WALK.md)
+- [BOT_WALKTO](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_WALKTO.md)
+- [BOT_TELEPORT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_TELEPORT.md)
+- [BOT_FLY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_FLY.md)
+- [BOT_SIT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SIT.md)
+- [BOT_STAND](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_STAND.md)
+- **[ALWAYS_RUN](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/ALWAYS_RUN.md)** \*
+- **[ALWAYS_WALK](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/ALWAYS_WALK.md)** \*
 
 ### Group Management
 
-- [BOT_LIST_GROUPS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LIST_GROUPS.md)
-- [BOT_LIST_GROUP_ROLES](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LIST_GROUP_ROLES.md)
-- [BOT_GROUP_JOIN](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_JOIN.md)
-- [BOT_GROUP_LEAVE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_LEAVE.md)
-- [BOT_ACTIVATE_GROUP](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_ACTIVATE_GROUP.md)
-- [BOT_GROUP_SET_ROLE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_SET_ROLE.md)
-- [BOT_GROUP_INVITE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_INVITE.md)
-- [BOT_GROUP_EJECT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_EJECT.md)
-- [BOT_SELECT_GROUP_TAG](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SELECT_GROUP_TAG.md)
-- **[ACTIVATE_ROLE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/ACTIVATE_ROLE.md)** \*
-- **[GROUP_INFO](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/GROUP_INFO.md)** \*
-- **[GROUP_VISIBILITY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/GROUP_VISIBILITY.md)** \*
-- **[GROUP_OFFER_ACCEPT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/GROUP_OFFER_ACCEPT.md)** \*
-- **[GROUP_OFFER_DECLINE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/GROUP_OFFER_DECLINE.md)** \*
-- **[LIST_GROUPS_UUID](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/LIST_GROUPS_UUID.md)** \*
-- **[LIST_GROUPS_NAME](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/LIST_GROUPS_NAME.md)** \*
-- **[LIST_GROUP_MEMBERS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/LIST_GROUP_MEMBERS.md)** \*
+- [BOT_LIST_GROUPS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LIST_GROUPS.md)
+- [BOT_LIST_GROUP_ROLES](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LIST_GROUP_ROLES.md)
+- [BOT_GROUP_JOIN](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_JOIN.md)
+- [BOT_GROUP_LEAVE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_LEAVE.md)
+- [BOT_ACTIVATE_GROUP](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_ACTIVATE_GROUP.md)
+- [BOT_GROUP_SET_ROLE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_SET_ROLE.md)
+- [BOT_GROUP_INVITE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_INVITE.md)
+- [BOT_GROUP_EJECT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_GROUP_EJECT.md)
+- [BOT_SELECT_GROUP_TAG](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SELECT_GROUP_TAG.md)
+- **[ACTIVATE_ROLE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/ACTIVATE_ROLE.md)** \*
+- **[GROUP_INFO](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/GROUP_INFO.md)** \*
+- **[GROUP_VISIBILITY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/GROUP_VISIBILITY.md)** \*
+- **[GROUP_OFFER_ACCEPT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/GROUP_OFFER_ACCEPT.md)** \*
+- **[GROUP_OFFER_DECLINE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/GROUP_OFFER_DECLINE.md)** \*
+- **[LIST_GROUPS_UUID](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/LIST_GROUPS_UUID.md)** \*
+- **[LIST_GROUPS_NAME](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/LIST_GROUPS_NAME.md)** \*
+- **[LIST_GROUP_MEMBERS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/LIST_GROUP_MEMBERS.md)** \*
 
 ### Friendship
 
-- [BOT_OFFER_FRIENDSHIP](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_OFFER_FRIENDSHIP.md)
-- [BOT_UNFRIEND](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_UNFRIEND.md)
-- [BOT_FRIENDSHIP_CAN_EDIT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_CAN_EDIT.md)
-- [BOT_FRIENDSHIP_SEE_ONLINE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_SEE_ONLINE.md)
-- [BOT_FRIENDSHIP_SEE_ON_MAP](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_SEE_ON_MAP.md)
+- [BOT_OFFER_FRIENDSHIP](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_OFFER_FRIENDSHIP.md)
+- [BOT_UNFRIEND](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_UNFRIEND.md)
+- [BOT_FRIENDSHIP_CAN_EDIT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_CAN_EDIT.md)
+- [BOT_FRIENDSHIP_SEE_ONLINE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_SEE_ONLINE.md)
+- [BOT_FRIENDSHIP_SEE_ON_MAP](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_SEE_ON_MAP.md)
 
 ### Money and Inventory
 
-- [BOT_LISTEN_INVENTORY_OFFER](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_INVENTORY_OFFER.md)
-- [BOT_LISTEN_MONEY_PAYMENTS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_MONEY_PAYMENTS.md)
-- [BOT_GIVE_INVENTORY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_GIVE_INVENTORY.md)
-- [BOT_GIVE_MONEY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_GIVE_MONEY.md)
-- [BOT_GIVE_MONEY_OBJECT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_GIVE_MONEY_OBJECT.md)
-- [BOT_GET_BALANCE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_GET_BALANCE.md)
-- [BOT_INVENTORY_DELETE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_INVENTORY_DELETE.md)
-- [BOT_NOTECARD_CREATE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_CREATE.md)
-- [BOT_NOTECARD_EDIT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_EDIT.md)
-- [BOT_NOTECARD_READ](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_READ.md)
-- **[LIST_INVENTORY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/LIST_INVENTORY.md)** \*
-- **[LIST_OUTFITS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/LIST_OUTFITS.md)** \*
-- **[WEAR_OUTFIT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/WEAR_OUTFIT.md)** \*
-- **[GET_WORN_OUTFIT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/GET_WORN_OUTFIT.md)** \*
-- **[INVENTORY_TO_OBJECT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/INVENTORY_TO_OBJECT.md)** \*
+- [BOT_LISTEN_INVENTORY_OFFER](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_INVENTORY_OFFER.md)
+- [BOT_LISTEN_MONEY_PAYMENTS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LISTEN_MONEY_PAYMENTS.md)
+- [BOT_GIVE_INVENTORY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_GIVE_INVENTORY.md)
+- [BOT_GIVE_MONEY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_GIVE_MONEY.md)
+- [BOT_GIVE_MONEY_OBJECT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_GIVE_MONEY_OBJECT.md)
+- [BOT_GET_BALANCE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_GET_BALANCE.md)
+- [BOT_INVENTORY_DELETE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_INVENTORY_DELETE.md)
+- [BOT_NOTECARD_CREATE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_CREATE.md)
+- [BOT_NOTECARD_EDIT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_EDIT.md)
+- [BOT_NOTECARD_READ](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_READ.md)
+- **[LIST_INVENTORY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/LIST_INVENTORY.md)** \*
+- **[LIST_OUTFITS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/LIST_OUTFITS.md)** \*
+- **[WEAR_OUTFIT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/WEAR_OUTFIT.md)** \*
+- **[GET_WORN_OUTFIT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/GET_WORN_OUTFIT.md)** \*
+- **[INVENTORY_TO_OBJECT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/INVENTORY_TO_OBJECT.md)** \*
 
 ### Object Interaction
 
-- [BOT_TOUCH_OBJECT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_TOUCH_OBJECT.md)
-- [BOT_ATTACHMENT_OBJECT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_ATTACHMENT_OBJECT.md)
-- **[TAKE_DELETE_OBJECT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/TAKE_DELETE_OBJECT.md)** \*
-- **[FIND_OBJECTS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/FIND_OBJECTS.md)** \*
-- **[FIND_OBJECTS_WITH_PROP](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/FIND_OBJECTS_WITH_PROP.md)** \*
-- **[FIND_OBJECTS_PARCEL](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/FIND_OBJECTS_PARCEL.md)** \*
-- **[FIND_OBJECT_UUID](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/FIND_OBJECT_UUID.md)** \*
+- [BOT_TOUCH_OBJECT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_TOUCH_OBJECT.md)
+- [BOT_ATTACHMENT_OBJECT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_ATTACHMENT_OBJECT.md)
+- **[TAKE_DELETE_OBJECT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/TAKE_DELETE_OBJECT.md)** \*
+- **[FIND_OBJECTS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/FIND_OBJECTS.md)** \*
+- **[FIND_OBJECTS_WITH_PROP](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/FIND_OBJECTS_WITH_PROP.md)** \*
+- **[FIND_OBJECTS_PARCEL](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/FIND_OBJECTS_PARCEL.md)** \*
+- **[FIND_OBJECT_UUID](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/FIND_OBJECT_UUID.md)** \*
 
 ### Bot Appearance
 
-- [BOT_WEAR](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_WEAR.md)
-- [BOT_TAKEOFF](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_TAKEOFF.md)
-- [BOT_REBAKE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_REBAKE.md)
-- [BOT_ATTACHMENTS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_ATTACHMENTS.md)
-- **[ADJUST_HOVER_HEIGHT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/ADJUST_HOVER_HEIGHT.md)** \*
+- [BOT_WEAR](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_WEAR.md)
+- [BOT_TAKEOFF](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_TAKEOFF.md)
+- [BOT_REBAKE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_REBAKE.md)
+- [BOT_ATTACHMENTS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_ATTACHMENTS.md)
+- **[ADJUST_HOVER_HEIGHT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/ADJUST_HOVER_HEIGHT.md)** \*
 
 ### Avatar Operations
 
-- **[AVATAR_INFO](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/AVATAR_INFO.md)** \*
-- **[AVATAR_DISPLAY_NAME](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/AVATAR_DISPLAY_NAME.md)** \*
-- **[AVATAR_PICKS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/AVATAR_PICKS.md)** \*
-- **[AVATAR_GROUPS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/AVATAR_GROUPS.md)** \*
-- **[AVATAR_GROUPS_MATCH](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/AVATAR_GROUPS_MATCH.md)** \*
-- **[AVATAR_GROUPS_SKIP](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/AVATAR_GROUPS_SKIP.md)** \*
-- **[AVATAR_GROUPS_MATCH_SKIP](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/AVATAR_GROUPS_MATCH_SKIP.md)** \*
-- **[SCAN_AVATARS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/SCAN_AVATARS.md)** \*
-- **[UUID_TO_NAME](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/UUID_TO_NAME.md)** \*
-- **[NAME_TO_UUID](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/NAME_TO_UUID.md)** \*
+- **[AVATAR_INFO](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/AVATAR_INFO.md)** \*
+- **[AVATAR_DISPLAY_NAME](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/AVATAR_DISPLAY_NAME.md)** \*
+- **[AVATAR_PICKS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/AVATAR_PICKS.md)** \*
+- **[AVATAR_GROUPS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/AVATAR_GROUPS.md)** \*
+- **[AVATAR_GROUPS_MATCH](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/AVATAR_GROUPS_MATCH.md)** \*
+- **[AVATAR_GROUPS_SKIP](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/AVATAR_GROUPS_SKIP.md)** \*
+- **[AVATAR_GROUPS_MATCH_SKIP](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/AVATAR_GROUPS_MATCH_SKIP.md)** \*
+- **[SCAN_AVATARS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/SCAN_AVATARS.md)** \*
+- **[UUID_TO_NAME](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/UUID_TO_NAME.md)** \*
+- **[NAME_TO_UUID](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/NAME_TO_UUID.md)** \*
 
 ### Sim Management
 
-- [BOT_SIM_RESTART_START](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_RESTART_START.md)
-- [BOT_SIM_RESTART_STOP](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_RESTART_STOP.md)
-- [BOT_SIM_SEND_MESSAGE](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_SEND_MESSAGE.md)
-- [BOT_SIM_KICK](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_KICK.md)
-- [BOT_SIM_ACCESS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_ACCESS.md)
-- [BOT_SIM_ACCESS_ALL_ESTATES](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_ACCESS_ALL_ESTATES.md)
-- **[SIM_RETURN_OBJECTS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/SIM_RETURN_OBJECTS.md)** \*
-- **[SIM_RETURN_SCRIPTED_OBJECTS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/SIM_RETURN_SCRIPTED_OBJECTS.md)** \*
-- **[SIM_RETURN_OTHERS_OBJECTS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/SIM_RETURN_OTHERS_OBJECTS.md)** \*
-- **[REGION_INFO](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/REGION_INFO.md)** \*
+- [BOT_SIM_RESTART_START](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_RESTART_START.md)
+- [BOT_SIM_RESTART_STOP](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_RESTART_STOP.md)
+- [BOT_SIM_SEND_MESSAGE](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_SEND_MESSAGE.md)
+- [BOT_SIM_KICK](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_KICK.md)
+- [BOT_SIM_ACCESS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_ACCESS.md)
+- [BOT_SIM_ACCESS_ALL_ESTATES](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_SIM_ACCESS_ALL_ESTATES.md)
+- **[SIM_RETURN_OBJECTS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/SIM_RETURN_OBJECTS.md)** \*
+- **[SIM_RETURN_SCRIPTED_OBJECTS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/SIM_RETURN_SCRIPTED_OBJECTS.md)** \*
+- **[SIM_RETURN_OTHERS_OBJECTS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/SIM_RETURN_OTHERS_OBJECTS.md)** \*
+- **[REGION_INFO](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/REGION_INFO.md)** \*
 
 ## LifeBots Command and Control Codes
 

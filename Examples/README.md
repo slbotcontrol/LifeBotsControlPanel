@@ -1,6 +1,6 @@
 # LifeBots Control Panel Examples
 
-The repository folder at https://github.com/missyrestless/LifeBotsControlPanel/tree/main/Examples
+The repository folder at https://github.com/slbotcontrol/LifeBotsControlPanel/tree/main/Examples
 contains example `LifeBots Control Panel` command and control scripts. These examples illustrate
 some of the features of the Control Panel.
 

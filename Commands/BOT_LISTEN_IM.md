@@ -15,12 +15,12 @@ The following table shows input values (you send them with the API call) and ret
 
 One of the following events will be generated:
 
-- [BOT_EVENT_LISTEN_SUCCESS](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_EVENT_LISTEN_SUCCESS.md)
-- [BOT_COMMAND_FAILED](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_COMMAND_FAILED.md)
+- [BOT_EVENT_LISTEN_SUCCESS](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_EVENT_LISTEN_SUCCESS.md)
+- [BOT_COMMAND_FAILED](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_COMMAND_FAILED.md)
 
 Additionally the following events get generated every time the bot receives an IM:
 
-- [BOT_EVENT_LISTEN_IM](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_EVENT_LISTEN_IM.md)
+- [BOT_EVENT_LISTEN_IM](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_EVENT_LISTEN_IM.md)
 
 ## Example
 

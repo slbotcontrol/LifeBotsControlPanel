@@ -15,7 +15,7 @@ The following table shows input values (you send them with the API call) and ret
 
 Raises the following event:
 
-- [BOT_NOTECARD_READ_REPLY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_READ_REPLY.md)
+- [BOT_NOTECARD_READ_REPLY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_READ_REPLY.md)
 
 ## Example
 

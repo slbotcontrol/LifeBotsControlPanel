@@ -17,11 +17,11 @@ your `LifeBots` bot name and bot code, and used exactly as-is in `LifeBots Contr
 - [Using LifeBots Control Panel](#using-lifebots-control-panel)
 - [Control Panel Setup](#control-panel-setup)
 - [Control Panel Commands](#control-panel-commands)
-  - [Full Control Panel Commands Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md)
+  - [Full Control Panel Commands Reference](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md)
 - [Control Panel Events](#control-panel-events)
-  - [Full Control Panel Events Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Events.md)
+  - [Full Control Panel Events Reference](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Control_Panel_Events.md)
 - [Your Script Functions](#your-script-functions)
-- [Examples](https://github.com/missyrestless/LifeBotsControlPanel/tree/main/Examples)
+- [Examples](https://github.com/slbotcontrol/LifeBotsControlPanel/tree/main/Examples)
 
 ## What is LifeBots
 
@@ -77,7 +77,7 @@ freely available under the terms of the GNU General Public License version 3.
 - Sim Management (if bot has Sim rights)
 - Trigger Bot actions on Events (e.g. Sit on object when Bot receives payment)
 - Create, read, edit, and send notecards
-- Much more, see the [Commands Reference](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md) for a full listing
+- Much more, see the [Commands Reference](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md) for a full listing
 
 All you need is to call `llMessageLinked` LSL function. For example, to send a group
 invite when the Control Panel is touched:
@@ -98,7 +98,7 @@ The two-way communication is performed by using commands and events.
 Add your command and control script to the `LifeBots Control Panel`. Your command and
 control script sends commands to your LifeBots bot and receives events back from the bot.
 
-See the [LifeBots Control Panel Examples](https://github.com/missyrestless/LifeBotsControlPanel/tree/main/Examples)
+See the [LifeBots Control Panel Examples](https://github.com/slbotcontrol/LifeBotsControlPanel/tree/main/Examples)
 for several example scripts demonstrating features available to your command and control scripts.
 
 ## Control Panel Setup
@@ -147,7 +147,7 @@ The `LifeBots Control Panel` sends commands from your script => your bot.
 These are the commands you send to the bot (initialization, group invitation etc).
 
 See the full list of supported `LifeBots Control Panel` commands at
-https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md
+https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Control_Panel_Commands.md
 
 ### How to Send Commands
 
@@ -168,7 +168,7 @@ The `LifeBots Control Panel` sends events from your bot => your script.
 Events are notifications being sent from the bot to your script (error messages, group chat IMs etc).
 
 View the full list of supported `LifeBots Control Panel` events at
-https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Control_Panel_Events.md
+https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Control_Panel_Events.md
 
 ### How to Receive Events
 
@@ -238,4 +238,4 @@ For example, your link_message function might include something like the followi
         }
 ```
 
-Issues can be reported at https://github.com/missyrestless/LifeBotsControlPanel/issues
+Issues can be reported at https://github.com/slbotcontrol/LifeBotsControlPanel/issues

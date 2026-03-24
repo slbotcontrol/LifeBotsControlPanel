@@ -15,7 +15,7 @@ The following table shows input values (you send them with the API call) and ret
 
 The following event will be raised with the list of the bots group roles
 
-- [BOT_LIST_GROUP_ROLES_REPLY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LIST_GROUP_ROLES_REPLY.md)
+- [BOT_LIST_GROUP_ROLES_REPLY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LIST_GROUP_ROLES_REPLY.md)
 
 ## Example
 

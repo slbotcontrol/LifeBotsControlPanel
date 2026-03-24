@@ -19,7 +19,7 @@ The name and contents of the notecard are being separated by a "\n" (see example
 
 Raises the following event:
 
-- [BOT_NOTECARD_CREATE_REPLY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_CREATE_REPLY.md)
+- [BOT_NOTECARD_CREATE_REPLY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_NOTECARD_CREATE_REPLY.md)
 
 ## Example
 

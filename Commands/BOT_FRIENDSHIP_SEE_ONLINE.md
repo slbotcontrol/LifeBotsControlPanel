@@ -19,5 +19,5 @@ llMessageLinked(LINK_SET, BOT_FRIENDSHIP_SEE_ONLINE, "1", "d648fb86-d59b-4d69-8d
 
 ## Related Commands
 
-- [BOT_FRIENDSHIP_CAN_EDIT](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_CAN_EDIT.md)
-- [BOT_FRIENDSHIP_SEE_ON_MAP](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_SEE_ON_MAP.md)
+- [BOT_FRIENDSHIP_CAN_EDIT](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_CAN_EDIT.md)
+- [BOT_FRIENDSHIP_SEE_ON_MAP](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_FRIENDSHIP_SEE_ON_MAP.md)

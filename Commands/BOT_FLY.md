@@ -21,4 +21,4 @@ llMessageLinked(LINK_SET, BOT_FLY, "", "");
 
 Stops the bot from flying
 
-- [BOT_STAND](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_STAND.md)
+- [BOT_STAND](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_STAND.md)

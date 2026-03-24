@@ -19,7 +19,7 @@ The following table shows input values (you send them with the API call) and ret
 
 The following event will be raised with the location of the bot:
 
-- [BOT_LOCATION_REPLY](https://github.com/missyrestless/LifeBotsControlPanel/blob/main/Commands/BOT_LOCATION_REPLY.md)
+- [BOT_LOCATION_REPLY](https://github.com/slbotcontrol/LifeBotsControlPanel/blob/main/Commands/BOT_LOCATION_REPLY.md)
 
 ## Example
 
