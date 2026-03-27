@@ -16,6 +16,8 @@ To setup the Channel Relay LifeBots Control Panel Test, rez the "Control Panel T
 
     Optionally, change LISTEN_CHANNEL, the channel the Control Panel will listen on. The default channel is -7742001
 
+    See the LifeBots Knowledge Base article at https://lifebots.cloud/support/article/how-to-setup-a-bot-access-secret for details on how to setup a Bot Access Code.
+
 5.  Save the customized channel_relay script
 
 6.  Right click the Configuration notecard in the Content tab of the control panel object and select Open
@@ -23,6 +25,8 @@ To setup the Channel Relay LifeBots Control Panel Test, rez the "Control Panel T
 7.  Replace "your-api-key" with your LifeBots API key:
 
     LB_API_KEY = your-api-key
+
+    Visit the LifeBots Developer Hub at https://lifebots.cloud/developer to generate and copy your LifeBots API Key.
 
 8.  Save the customized Configuration notecard and close the Edit window
 
