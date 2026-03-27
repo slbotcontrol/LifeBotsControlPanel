@@ -359,7 +359,7 @@ default {
          else {
              if ((API_KEY == "") || (API_KEY == "your-api-key")) {
                  api_key_not_set();
-                 llSetScriptState(llGetScriptName(), FALSE);
+                 // llSetScriptState(llGetScriptName(), FALSE);
              } else {
                  llOwnerSay("Configuration notecard missing, using defaults.");
                  request_secure_url();
@@ -407,7 +407,7 @@ default {
                     NotecardDone = 1;
                     if ((API_KEY == "") || (API_KEY == "your-api-key")) {
                         api_key_not_set();
-                        llSetScriptState(llGetScriptName(), FALSE);
+                        // llSetScriptState(llGetScriptName(), FALSE);
                     } else {
                         // Let everybody know we are done reading the Configuration notecard
                         llMessageLinked(LINK, NOTECARD_DONE, "", "");
