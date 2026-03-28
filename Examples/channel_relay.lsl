@@ -19,6 +19,7 @@ integer BOT_SETUP_DEVICENAME        = 280103;   //
 integer BOT_SETUP_SETBOT            = 280101;   //
 integer BOT_LISTEN_IM               = 280126;   //
 integer BOT_EVENT_LISTEN_IM         = 280205;   //
+integer BOT_EVENT_LISTEN_SUCCESS    = 280208;   //
 integer BOT_SETUP_SUCCESS           = 280201;   //
 integer BOT_SETUP_FAILED            = 280202;   //
 integer BOT_SETUP_DEBUG             = 280105;   //
