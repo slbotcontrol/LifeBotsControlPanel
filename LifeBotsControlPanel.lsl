@@ -574,7 +574,7 @@ default {
             // Parse response for success or failure and process any events
             string result;
             string resulttext;
-            if (DATATYPE = "URLENCODE") {
+            if (DATATYPE == "URLENCODE") {
                 if (llSubStringIndex(body, "result=OK") != -1) {
                     llOwnerSay("✓ Command executed successfully");
                     processJsonResult(resultToJson(body));
@@ -585,7 +585,7 @@ default {
                     llOwnerSay("✗ Command failed - check response");
                     llMessageLinked(LINK, BOT_COMMAND_FAILED, result + "\n" + resulttext, NULL_KEY);
                 } else {
-                    llOwnerSay("✗ Unable to parse result - check response");
+                    llOwnerSay("✗ Unable to parse URLENCODE result: " + body);
                 }
             } else {
                 result = llJsonGetValue(body, ["result"]);
@@ -597,7 +597,8 @@ default {
                     llOwnerSay("✗ Command failed - check response");
                     llMessageLinked(LINK, BOT_COMMAND_FAILED, result + "\n" + resulttext, NULL_KEY);
                 } else {
-                    llOwnerSay("✗ Unable to parse result - check response");
+                    llOwnerSay("✗ Unable to parse JSON result body: " + body);
+                    llOwnerSay("✗ result: " + result);
                 }
             }
         } else {
@@ -646,7 +647,7 @@ default {
             // TODO: validate this is a proper link number for the prim
             llOwnerSay("Setting link number for llMessageLinked calls to: " + message);
             LINK = (integer)message;
-        } else if (num == BOT_RESET_TOTALCONTROL) {
+        } else if (num == BOT_RESET_CONTROLPANEL) {
             llOwnerSay("Resetting " + PRODUCT);
             llResetScript();
         // Bot Status
