@@ -179,11 +179,9 @@ default {
             }
         } else if (num == BOT_EVENT_LISTEN_IM) {
             // This event is received when the bot hears a message in IM
-            // The 'str' contains the message details
-            llOwnerSay("Bot heard a message: " + str);
-
             // After the first IM turn off debugging
             if (DEBUG == 1) {
+                llOwnerSay("Bot heard a message: " + str);
                 DEBUG = 0;
                 llMessageLinked(LINK_SET, BOT_SETUP_DEBUG, "0", "");
             }
@@ -209,7 +207,9 @@ default {
     
     listen(integer channel, string name, key id, string message) {
         if (channel == listenChannel) {
-            llOwnerSay("Script heard channel message: " + message);
+            if (DEBUG == 1) {
+                llOwnerSay("Script heard channel message: " + message);
+            }
             // Send the message to the LifeBots bot
             if (botKey == NULL_KEY) {
                 botKey = llRequestUserKey(botName);

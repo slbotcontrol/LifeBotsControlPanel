@@ -1307,7 +1307,7 @@ default {
                   (num != BOT_SETUP_RETRY) && (num != BOT_EVENT_LISTEN_SUCCESS) &&
                   (num != BOT_EVENT_LISTEN_INVENTORY) && (num != BOT_EVENT_LISTEN_IM) &&
                   (num != BOT_EVENT_LISTEN_LOCAL_CHAT) && (num != BOT_EVENT_LISTEN_MONEY) &&
-                  (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
+                  (num != BOT_COMMAND_FAILED) && (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
                 llOwnerSay("Unsupported API request: num=" + (string)num + ", message=" + message);
               }
             }
