@@ -50,13 +50,13 @@ fi
 
 make clean
 make
-[ -f LifeBotsControlPanel.zip ] || {
+[ -f LifeBotsControlPanel.zip ] && [ -f LifeBotsControlPanel.lslo ] || {
   echo "ERROR: cannot locate LifeBotsControlPanel.zip"
   exit 1
 }
 
-tar cf - Examples/*.lsl | gzip -9 > Examples-${VERSION}.tar.gz
-tar cf - LifeBotsControlPanel.lsl \
+tar cf - Examples/*.lslo | gzip -9 > Examples-${VERSION}.tar.gz
+tar cf - LifeBotsControlPanel.lslo \
          Examples-${VERSION}.tar.gz \
          Configuration \
          LICENSE \
@@ -66,7 +66,7 @@ gh release create v${VERSION} ${DRAFT} \
                   --title "${ANNO}" \
                   --target "${BRANCH}" \
                   --notes-file Release_Notes.md \
-                  LifeBotsControlPanel.lsl \
+                  LifeBotsControlPanel.lslo \
                   Configuration \
                   Examples/header.lsl \
                   LifeBotsControlPanel-${VERSION}.tar.gz \
