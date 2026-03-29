@@ -42,6 +42,11 @@ bot_code_not_set() {
     llOwnerSay("Edit the ChannelRelayConf notecard to set your LifeBots Bot Access Code.");
 }
 
+bot_name_not_set() {
+    llOwnerSay("ERROR: LB_BOT_NAME not set.");
+    llOwnerSay("Edit the ChannelRelayConf notecard to set your LifeBots Bot Name.");
+}
+
 default {
 
     state_entry()
@@ -51,7 +56,7 @@ default {
             NotecardLine = 0;
             QueryID = llGetNotecardLine(CONFIG_CARD, NotecardLine);
         } else {
-            bot_code_not_set();
+            llOwnerSay("ERROR: " + CONFIG_CARD + " notecard not found!");
         }
     }
 
@@ -64,15 +69,19 @@ default {
             if ((NotecardDone == 0) && (data != EOF)) {
                 if (data == "END_SETTINGS") {
                     NotecardDone = 1;
-                    if ((LB_BOT_CODE == "") || (LB_BOT_CODE == "Bot Access Code")) {
+                    if ((botCode == "") || (botCode == "Bot Access Code")) {
                         bot_code_not_set();
                     } else {
-                        // Setup Device and Bot using linked messages
-                        llMessageLinked(LINK_SET, BOT_SETUP_DEVICENAME, deviceName, llGetOwner());
-                        llMessageLinked(LINK_SET, BOT_SETUP_SETBOT, botName, botCode);
-                        // Request the key from the bot name
-                        if (botKey == NULL_KEY) {
-                            botKey = llRequestUserKey(botName);
+                        if ((botName == "") || (botName == "Bot Name")) {
+                            bot_name_not_set();
+                        } else {
+                            // Setup Device and Bot using linked messages
+                            llMessageLinked(LINK_SET, BOT_SETUP_DEVICENAME, deviceName, llGetOwner());
+                            llMessageLinked(LINK_SET, BOT_SETUP_SETBOT, botName, botCode);
+                            // Request the key from the bot name
+                            if (botKey == NULL_KEY) {
+                                botKey = llRequestUserKey(botName);
+                            }
                         }
                     }
                 } else if ( llGetSubString(data, 0, 0) != "#" && llStringTrim(data, STRING_TRIM) != "" ) {
@@ -82,19 +91,19 @@ default {
                     if ( value == "TRUE" ) value = "1";
                     if ( value == "FALSE" ) value = "0";
                     if ( name == "LB_BOT_CODE" ) {
-                        if (LB_DEBUG == 1) {
+                        if (DEBUG == 1) {
                           llSay(DEBUG_CHANNEL, "Setting Bot Code to " + value);
                         }
                         botCode = value;
                     } else if ( name == "LB_BOT_NAME" ) {
-                        if (LB_DEBUG == 1) {
+                        if (DEBUG == 1) {
                           llSay(DEBUG_CHANNEL, "Setting Bot Name to " + value);
                         }
                         botName = value;
                     } else if ( name == "LISTEN_CHANNEL" ) {
                         listenChannel = (integer)value;
                     } else if ( name == "DEBUG" ) {
-                        LB_DEBUG = (integer)value;
+                        DEBUG = (integer)value;
                     }
                 }
                 NotecardLine++;
