@@ -10,9 +10,9 @@ The `LifeBots Control Panel` is a scripted in-world object that acts as a bridge
 
 ## Deployment
 
-Download the `LifeBotsControlPanel.lsl` script, the `Configuration` notecard, and the `header.lsl`.
+Download the `LifeBotsControlPanel.lslo` script, the `Configuration` notecard, and the `header.lsl`.
 
-In Second Life create a new script named `LifeBotsControlPanel` and copy the contents of `LifeBotsControlPanel.lsl` into this new script. Similarly, create a new notecard named `Configuration` and copy the contents of `Configuration` into this new notecard.
+In Second Life create a new script named `LifeBotsControlPanel` and copy the contents of `LifeBotsControlPanel.lslo` into this new script. Similarly, create a new notecard named `Configuration` and copy the contents of `Configuration` into this new notecard.
 
 Edit the `Configuration` notecard and replace `your-api-key` in the line `LB_API_KEY = your-api-key` with your `LifeBots` developer API key.
 

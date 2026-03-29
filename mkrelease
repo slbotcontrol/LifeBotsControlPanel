@@ -48,6 +48,13 @@ if [ -f ${HOME}/.mrprivate ]; then
   source ${HOME}/.mrprivate
 fi
 
+make clean
+make
+[ -f LifeBotsControlPanel.zip ] || {
+  echo "ERROR: cannot locate LifeBotsControlPanel.zip"
+  exit 1
+}
+
 tar cf - Examples/*.lsl | gzip -9 > Examples-${VERSION}.tar.gz
 tar cf - LifeBotsControlPanel.lsl \
          Examples-${VERSION}.tar.gz \
@@ -62,7 +69,9 @@ gh release create v${VERSION} ${DRAFT} \
                   LifeBotsControlPanel.lsl \
                   Configuration \
                   Examples/header.lsl \
-                  LifeBotsControlPanel-${VERSION}.tar.gz
+                  LifeBotsControlPanel-${VERSION}.tar.gz \
+                  LifeBotsControlPanel.zip
 
 git fetch --tags origin
 rm -f Examples-${VERSION}.tar.gz LifeBotsControlPanel-${VERSION}.tar.gz
+make clean
