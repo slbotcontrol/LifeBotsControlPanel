@@ -14,7 +14,7 @@
 ////////////////////////////////////////////////////
 
 string PRODUCT = "LifeBots Control Panel™";
-string VERSION = "1.0.0";
+string VERSION = "1.0.1";
 
 //////// LIFEBOTS COMMAND & CONTROL CODES ////////
 // Setup and startup                            //
