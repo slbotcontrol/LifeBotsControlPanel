@@ -14,7 +14,7 @@
 ////////////////////////////////////////////////////
 
 string PRODUCT = "LifeBots Control Panel™";
-string VERSION = "1.0.1";
+string VERSION = "1.0.2";
 
 //////// LIFEBOTS COMMAND & CONTROL CODES ////////
 // Setup and startup                            //
@@ -1303,9 +1303,11 @@ default {
             // TODO: which others did we not catch in this link_message event
             // Remove when development completed
             if (num > 250000) {
-              if ((num != BOT_SETUP_SUCCESS) && (num != BOT_SETUP_FAILED) && (num != BOT_SETUP_RETRY) && 
-                  (num != BOT_EVENT_LISTEN_INVENTORY) && (num != BOT_EVENT_LISTEN_IM) && (num != BOT_EVENT_LISTEN_LOCAL_CHAT) &&
-                  (num != BOT_EVENT_LISTEN_MONEY) && (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
+              if ((num != BOT_SETUP_SUCCESS) && (num != BOT_SETUP_FAILED) &&
+                  (num != BOT_SETUP_RETRY) && (num != BOT_EVENT_LISTEN_SUCCESS) &&
+                  (num != BOT_EVENT_LISTEN_INVENTORY) && (num != BOT_EVENT_LISTEN_IM) &&
+                  (num != BOT_EVENT_LISTEN_LOCAL_CHAT) && (num != BOT_EVENT_LISTEN_MONEY) &&
+                  (num != BOT_SETUP_DEBUG_SUCCESS) && (num != BOT_RESPONSE)) {
                 llOwnerSay("Unsupported API request: num=" + (string)num + ", message=" + message);
               }
             }

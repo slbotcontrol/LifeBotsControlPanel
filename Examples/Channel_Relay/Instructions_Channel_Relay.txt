@@ -1,0 +1,51 @@
+Setup instructions for the LifeBots Control Panel Channel Relay
+---------------------------------------------------------------
+
+To setup the LifeBots Control Panel Channel Relay:
+
+    Rez the "Control Panel Channel Relay" object
+
+    Edit the Configuration notecard
+
+    Edit the ChannelRelayConf notecard
+
+    Reset the scripts
+
+Step-by-Step Setup Procedure:
+
+1.  Rez the "Control Panel Channel Relay" object in-world
+
+2.  Right click the rezzed control panel and select Edit
+
+3.  In the Content tab of the Edit window right click the "Configuration" notecard and select Open
+
+4.  Replace "your-api-key" with your LifeBots API key:
+
+    LB_API_KEY = your-api-key
+
+    Visit the LifeBots Developer Hub at https://lifebots.cloud/developer to generate and copy your LifeBots API Key.
+
+5.  Save the customized Configuration notecard and close the Edit window
+
+6.  In the Content tab of the Edit window right click the "ChannelRelayConf" notecard and select Open
+
+7.  Replace "Bot Name" with your LifeBots bot name and "Bot Access Code" with your bot's API access code:
+
+    LB_BOT_NAME = "Bot Name"
+    LB_BOT_CODE = "Bot Access Code"
+
+    Optionally, change LISTEN_CHANNEL, the channel the Control Panel will listen on. The default channel is -7742001
+
+    See the LifeBots Knowledge Base article at https://lifebots.cloud/support/article/how-to-setup-a-bot-access-secret for details on how to setup a Bot Access Code.
+
+8.  Save the customized ChannelRelayConf notecard
+
+9.  Right click the control panel object and select 'More' -> 'More' -> 'Scripts' -> 'Reset Scripts'
+
+10. Click the control panel to enable listening on the configured channel. Messages on this channel will be sent to your bot as IMs.
+
+11. A manual test can be performed in local chat, sending a message on the configured channel. For example, say the following in Nearby Chat: /-7742001 This is a test of the Control Panel Channel Relay
+
+12. Click the control panel again to disable listening and relaying messages to your bot.
+
+Contact Missy Restless in-world or email missyrestless@gmail.com with questions, comments, and suggestions.

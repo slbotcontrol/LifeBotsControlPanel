@@ -55,7 +55,7 @@ make
   exit 1
 }
 
-tar cf - Examples/*.lslo | gzip -9 > Examples-${VERSION}.tar.gz
+tar cf - Examples/*/*.txt Examples/*/*.lslo Examples/*.lslo | gzip -9 > Examples-${VERSION}.tar.gz
 tar cf - LifeBotsControlPanel.lslo \
          Examples-${VERSION}.tar.gz \
          Configuration \

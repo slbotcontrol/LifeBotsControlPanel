@@ -35,12 +35,12 @@ VERSION="1.0.1"
 # Note some of these scripts don't strictly need to be optimized for memory.
 
 OPTIMIZED=LifeBotsControlPanel.lslo\
+ Examples/Avatar_Picks/avatar_picks.lslo\
+ Examples/Channel_Relay/channel_relay.lslo\
  DialogMenu.lslo\
  Examples/accept_inventory_offers.lslo\
  Examples/auto_responder.lslo\
- Examples/avatar_picks.lslo\
  Examples/bot_location_reply.lslo\
- Examples/channel_relay.lslo\
  Examples/dialog_reply.lslo\
  Examples/group_inviter.lslo\
  Examples/inventory_giver.lslo\

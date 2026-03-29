@@ -1,12 +1,10 @@
 # LifeBots Control Panel Release Notes
 
-**[Note:]** This is the initial release of `LifeBots Control Panel`. The system is still under development and subsequent releases will follow quickly. Consider this release an `Alpha` release intended for internal testing only.
+**[Note:]** The `LifeBots Control Panel` is still under development and subsequent releases will follow quickly. Consider this release an `Alpha` release intended for internal testing only.
 
 `LifeBots Control Panel` is an LSL script library to control `LifeBots` bots from an LSL script.
 
 The `LifeBots Control Panel` is a scripted in-world object that acts as a bridge between your `LifeBots` management scripts and your `LifeBots` bots. The control panel communicates with your bots using the `LifeBots API` and an HTTP server listening to events.
-
-`LifeBots Control Panel` is compatible with `SmartBots TotalControl` scripts. Existing `SmartBots TotalControl` scripts can be modified, replacing the bot name and bot code with your `LifeBots` bot name and bot code, and used exactly as-is in `LifeBots Control Panel`.
 
 ## Deployment
 
