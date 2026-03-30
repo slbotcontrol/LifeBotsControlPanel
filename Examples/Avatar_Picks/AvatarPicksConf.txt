@@ -1,0 +1,11 @@
+# Uncomment to enable debug mode
+#DEBUG = TRUE
+# LifeBots Bot Name                     REQUIRED
+# DO NOT surround the Bot Name with single or double quotes
+LB_BOT_NAME = Bot Name
+# LifeBots Bot Access Code              REQUIRED
+# DO NOT surround the Bot Code with single or double quotes
+LB_BOT_CODE = Bot Access Code
+# DO NOT remove END_SETTINGS line
+END_SETTINGS
+# The settings prior to END_SETTINGS are all that is read and used.

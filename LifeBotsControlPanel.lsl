@@ -1,8 +1,8 @@
-///////////// LifeBots Control Panel ///////////////
+///////////// LifeBots Control Panel \\\\\\\\\\\\\\\
 //                                                //
 // This script acts as a bridge between LifeBots  //
 // command and control scripts and LifeBots bots  //
-//                                                //
+//        https://slbotcontrol.github.io/         //
 ////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////
@@ -16,7 +16,7 @@
 string PRODUCT = "LifeBots Control Panel™";
 string VERSION = "1.0.2";
 
-//////// LIFEBOTS COMMAND & CONTROL CODES ////////
+//////// LIFEBOTS COMMAND & CONTROL CODES \\\\\\\\
 // Setup and startup                            //
 integer BOT_SETUP_SETBOT            = 280101;   //
 integer BOT_STATUS_QUERY            = 280106;   //
