@@ -1,34 +1,28 @@
-Setup instructions for the Avatar Picks LifeBots Control Panel demo
--------------------------------------------------------------------
+Setup instructions for the Avatar Picks LifeBots Control Panel Example
+----------------------------------------------------------------------
 
-To setup the LifeBots Control Panel Demo, rez the object, edit the avatar_picks script and the Configuration notecard, and reset the scripts:
+The 'LifeBots Control Panel' acts as a bridge between your user script and the 'LifeBots' API. In order for the Control Panel to execute requests to the 'LifeBots' API, a LifeBots API Key and Bot Access Secret (aka Code) are required.
 
-1. Rez the "Control Panel DEMO (avatar picks)" object in-world
+Before you begin the setup process, generate and copy your LifeBots API Key and your bot's access secret:
 
-2. Right click the rezzed control panel and select Edit
+- Visit the LifeBots Developer Hub at https://lifebots.cloud/developer to generate and copy your LifeBots API Key
+- See the LifeBots Knowledge Base article on How to Setup a Bot Access Secret at https://lifebots.cloud/support/article/how-to-setup-a-bot-access-secret
 
-3. In the Content tab of the Edit window right click the avatar_picks script and select Open
+To setup the Avatar Picks LifeBots Control Panel Example:
 
-4. Replace "Bot Name" with your LifeBots bot name and "Bot Access Code" with your bot's API access code:
-
-    string botName = "Bot Name";
-    string botCode = "Bot Access Code";
-
-   See the LifeBots Knowledge Base article at https://lifebots.cloud/support/article/how-to-setup-a-bot-access-secret for details on how to setup a Bot Access Code.
-
-5. Save the customized avatar_picks script
-
-6. Right click the Configuration notecard in the Content tab of the control panel object and select Open
-
-7. Replace "your-api-key" with your LifeBots API key:
-
-    LB_API_KEY = your-api-key
-
-   Visit the LifeBots Developer Hub at https://lifebots.cloud/developer to generate and copy your LifeBots API Key.
-
-8. Save the customized Configuration notecard and close the Edit window
-
-9. Right click the control panel object and select 'More' -> 'More' -> 'Scripts' -> 'Reset Scripts'
+1.  Rez the 'LifeBots Control Panel' object in-world
+2.  Right click the rezzed control panel and select Edit
+3.  In the Content tab of the Edit window right click the Configuration notecard and select Open
+4.  Configure the 'LifeBots Control Panel' with your LifeBots API Key
+  4a. On the line 'LB_API_KEY = your-api-key' replace 'your-api-key' with your LifeBots API Key
+  4b. Save and close the 'Configuration' notecard
+5.  Drag and Drop the 'AvatarPicksConf' notecard from your inventory into the Content tab of the object
+6.  In the Content tab of the Edit window right click the 'AvatarPicksConf' notecard and select Open
+  6a. On the line 'LB_BOT_NAME = Bot Name' replace 'Bot Name' with your LifeBots bot name
+  6b. On the line 'LB_BOT_CODE = Bot Access Code' replace 'Bot Access Code' with your LifeBots bot access code
+  6c. Save and close the 'AvatarPicksConf' notecard
+7.  Drag and Drop the 'avatar_picks' script from your inventory into the Content tab of the object
+8.  Right click the control panel object and select 'More' -> 'More' -> 'Scripts' -> 'Reset Scripts'
 
 Once configured the Control Panel should display the Profile Picks of the avatar that touches it.
 
